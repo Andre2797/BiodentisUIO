@@ -278,7 +278,7 @@ select option {
     vertical-align: bottom;
     position: relative;
     top: -1px;
-    *overflow: hidden;
+    overflow: hidden;
     text-align: left;
     margin-right: 50px;
     margin-left: 20px;
@@ -294,7 +294,7 @@ select option {
   vertical-align: bottom;
   position: relative;
   top: -1px;
-  *overflow: hidden;
+  overflow: hidden;
   text-align: left;
   margin-right: 10px;
   margin-left: 0px ;
@@ -310,7 +310,7 @@ select option {
   vertical-align: bottom;
   position: relative;
   top: -1px;
-  *overflow: hidden;
+  overflow: hidden;
   text-align: left;
   margin-right: 50px;
 
@@ -326,7 +326,7 @@ select option {
   vertical-align: bottom;
   position: relative;
   top: -1px;
-  *overflow: hidden;
+  overflow: hidden;
   text-align: left;
   margin-right: 50px;
   border-radius: 20px;
@@ -339,7 +339,7 @@ select option {
   vertical-align: bottom;
   position: relative;
   top: -1px;
-  *overflow: hidden;
+  overflow: hidden;
   text-align: left;
   margin-right: 10px;
   margin-left: 0px ;
