@@ -1,0 +1,131 @@
+<div class="container">
+    
+        <ul id="lista2" style="margin-top: 5%;">
+            <li *ngFor="let dig of diagnos">
+                <ol>
+                    <li *ngFor="let diagnos of dig.diagnostico">
+                        <a data-toggle="modal" (click)="open(diagnos.nome,diagnos.numeroDente,diagnos._id)" data-target="#myModal">
+                            {{diagnos.numeroDente}}:
+                            {{diagnos.nome}} </a>
+                    </li>
+    
+                </ol>
+            </li>
+    
+        </ul>
+ 
+   
+
+    <!-- The Modal -->
+    <div *ngIf="showModalBox" class="modal" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header" style="background-color: #30d9e8  ;">
+                    <h4 class="modal-title">Tratamiento</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="form-group col-12">
+
+                        <div class="form-group col-12">
+                            <div class="row">
+
+                                <label>Descripción</label>
+                                <textarea name="descripcion" [(ngModel)]="tratamientosarry.descripcion">
+
+                                </textarea>
+
+
+
+                            </div>
+                        </div>
+                        <div class="form-group col-12">
+                            <div class="row">
+                                <label>Costos</label>
+                                <input type="text" name="costo" [(ngModel)]="tratamientosarry.costo">
+
+                            </div>
+                        </div>
+
+                        <div class="form-group col-12">
+                            <div class="row">
+                                <label>Sesiones</label>
+                                <input type="text" id="sesion" name="sesiones"
+                                    [(ngModel)]="tratamientosarry.sesiones" />
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                   
+                    <button type="button" class="btn" style="background-color:#30d9e8 ; color: black;" 
+                        (click)="saveTratamientos()" data-dismiss="modal">AGREGAR TRATAMIENTO</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+  
+   
+</div>
+
+<div class="col-12" style="margin-top: 10%;">
+
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <div class="panel panel-default">
+                <div class="table-responsive" style="margin-top: -10% !important;">
+                    <table class="table display dataTable table-bordered table-striped"
+                        id="tabelaTestesEspecificosForm">
+                        <thead class="tableSize" class="text-center" >
+                            <tr>
+                                <th>DIAGNÓSTICO</th>
+                                <th>DESCRIPCIÓN</th>
+                                <th>COSTO</th>
+                                <th>SESIONES</th>
+                                <th >ELIMINAR</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tratamientos" *ngFor="let item of arryatratamientos" class="text-center">
+                            <tr >
+                                <td  >
+                                    {{item.numero}}: {{item.nombre}}
+                                </td>
+                                <td>
+                                    {{item.descripcion || 'Ninguna Descripción adicional'}}
+                                </td>
+                                <td>
+                                    $   {{item.costo}}
+                                </td>
+                                <td>
+                                    {{item.sesiones}}
+                                </td>
+                                <td >
+                                    <button (click)='apagar( item.descripcion , item.costo, item.sesiones)'
+                                        class="btn btn-danger">
+                                        <i class="far fa-trash-alt"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="form-group" style="margin-left: 30%;">
+    
+        <button class="boton_1" style="margin-right:100px; margin-top: 10px;" (click)="crearTratamiento()">GUARDAR</button>
+        <button class="boton_1" style="margin-left:100px; margin-top: 10px;" (click)="goBack()">CANCELAR</button>
+   
+</div>
+    

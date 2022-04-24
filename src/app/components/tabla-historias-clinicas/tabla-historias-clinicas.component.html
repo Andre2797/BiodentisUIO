@@ -1,0 +1,104 @@
+<div style="align-items: center; justify-content: center;">
+
+  <div class="row">
+    <div class="row">
+      <!-- <img class="biodentis" src="../../../assets/img/logo_biodentis.PNG"> -->
+      <h2 style="margin-left: 38%;margin-top: 2%; font-weight: bold; font-size:26pt;">CENTRO ODONTOLÓGICO &nbsp;
+      </h2>
+      <img style=" width:25%;  margin-top: 2%; margin-right: 40%;                                                                                      ;
+            margin-left:40%;" src="../../../assets/img/biodentis_preview_rev_1.png" />
+
+    </div>
+
+
+
+    <div class="row tipo">
+      <div class="wrapper ">
+        <input type="radio" name="select" id="option-1" checked (click)="changeinput()">
+        <input type="radio" name="select" id="option-2" (click)="changeinput()">
+        <label for="option-1" class="option option-1">
+          <div class="dot"></div>
+          <span>N° CEDULA</span>
+        </label>
+        <label for="option-2" class="option option-2">
+          <div class="dot"></div>
+          <span>PACIENTE</span>
+        </label>
+      </div>
+    </div>
+
+    <div class="buscar">
+
+
+
+      <div class="flexsearch">
+        <div class="flexsearch--wrapper">
+          <form class="flexsearch--form" action="#" method="post">
+            <div class="flexsearch--input-wrapper">
+              <input id="busqueda" class="flexsearch--input" type="search" placeholder="Buscar">
+            </div>
+            <input (click)="jsBuscar();" class="flexsearch--submit" type="submit" value="&#10140;" />
+          </form>
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="container">
+      <div class="row">
+        <div class="col-10">
+          <table class="table table-bordered" id="miTabla" style="margin-left: 25%;">
+            <thead>
+              <tr>
+                <th scope="col">NÚMERO DE CEDULA</th>
+                <th scope="col">NOMBRE</th>
+                <th scope="col">APELLIDO</th>
+                <th scope="col">ACCIONES</th>
+              </tr>
+            </thead>
+            <tbody>
+
+
+
+              <tr
+                *ngFor="let pac of paciente.pac | paginate: { itemsPerPage: paciente.pages, currentPage: paciente.current, totalItems: 20 }"
+                class.active="i == paciente.current">
+                <td scope="row">{{pac.numCedula}}</td>
+                <td>{{pac.nombre}}</td>
+                <td>{{pac.apellido}}</td>
+                <td>
+                  <div class="form-group">
+                    <button type="button" class="btn btn-primary botonTabla" title="Ver Procedimientos"
+                      routerLink="/menu/procediminetos/{{pac._id}}"><i class="fas fa-eye"></i></button>
+                    <button type="button" class="btn btn-success botonTabla" title="Editar Historia Clinica"
+                      routerLink="/menu/historia/{{pac._id}}"><i class="fas fa-edit"></i></button>
+                    <button type="button" class="btn btn-danger botonTabla" title="Nuevo Odontograma"
+                      (click)="newOdo(pac._id)"><i class="fas fa-plus-circle"></i></button>
+
+                    <button type="button" class="btn  botonTabla" title="Seguimiento" style="background-color: goldenrod; color: honeydew;"
+                     routerLink="/menu/seguimiento/{{pac._id}}"><i class="fa fa-list-alt" aria-hidden="true"></i></button>
+                  </div>
+                </td>
+              </tr>
+
+
+
+            </tbody>
+          </table>
+
+          <div class="form-group" style="margin-left: 70%;">
+
+            <div class="d-flex justify-content-center">
+              <pagination-controls (pageChange)="onTableDataChange($event)">
+              </pagination-controls>
+            </div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

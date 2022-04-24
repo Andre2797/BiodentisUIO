@@ -1,0 +1,17 @@
+.boton_1{
+    width: 200px;
+    height: 40px;
+    text-decoration: none;
+    padding: 3px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-family: helvetica;
+    font-weight: 300;
+    font-size: 18px;
+    margin-bottom: 2%;
+    color: beige;
+    background-color: #7fccde;
+    border-radius: 5px;
+    border: 3px double #7fccde;
+    text-align: center;
+  }

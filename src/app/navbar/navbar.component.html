@@ -1,0 +1,26 @@
+<mat-toolbar class="menuColor">
+  <span>BIODENTIS</span>
+  <div class="spacer"></div>
+  <a  mat-button routerLink="/menu/home"><mat-icon>home</mat-icon>
+      <span>Inicio</span></a>
+  
+
+  <div class="dropdown">
+      <button class="dropbtn"> <mat-icon>person</mat-icon>
+          Pacientes</button>
+      <div class="dropdown-content">
+          <a routerLink="/menu/historia"><mat-icon>add_circle</mat-icon>
+              <span> Nuevo Paciente</span>  </a>
+          <a routerLink="/menu/tabla-Historias-Clinicas"><mat-icon>library_books</mat-icon>
+              Chequeo Odontologico</a>
+      </div>
+  </div>
+ 
+  <a id="cita" href="" mat-button routerLink="/menu/cita"><mat-icon>calendar_today</mat-icon>
+      <span>Citas</span></a>
+
+  <a href="" mat-raised-button color="accent" style="background-color: darkturquoise;" (click)="onLogout()">Cerrar Sesión</a>
+
+</mat-toolbar>
+
+<router-outlet></router-outlet> 

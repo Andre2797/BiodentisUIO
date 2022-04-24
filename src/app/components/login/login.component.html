@@ -1,0 +1,53 @@
+<html>
+
+<div class="wrapper fadeInDown">
+
+  <div id="formContent">
+    <!-- Tabs Titles -->
+    <h2 class="active"> Iniciar Sesión </h2>
+    <!-- Icon -->
+    <div class="fadeIn first">
+      <img
+        src="https://media.istockphoto.com/vectors/icon-of-tooth-dentist-symbol-logo-of-teeth-graphic-shape-for-dental-vector-id1294412708?b=1&k=20&m=1294412708&s=170667a&w=0&h=TFiONzIWRC2PFFcrZOw8jNkbQ6Q85zVxjBWDoZyJlZs="
+        id="icon" alt="User Icon" />
+    </div>
+
+    <!-- Login Form -->
+    <form class="custom-form" [formGroup]="loginForm" >
+      <input type="email" id="login" class="fadeIn second form-control" name="correo" required placeholder="Correo Electrónico"
+        formControlName="correo">
+        <div *ngIf="loginForm.controls['correo'].touched && loginForm.controls['correo'].invalid" >
+          <small class="text-danger" *ngIf="loginForm.controls['correo'].errors?.required ">
+             Ingrese los campos obligatorios
+          </small>
+          <small class="text-danger" *ngIf="loginForm.controls['correo'].errors?.email">
+            Correo invalido
+        </small>
+       
+   
+      </div>
+      <input type="password" id="password" class="fadeIn third form-control " required name="contrasenia"
+        placeholder="Contraseña" formControlName="contrasenia">
+       
+      
+      <div *ngIf="loginForm.controls['contrasenia'].touched && loginForm.controls['contrasenia'].invalid" >
+        <small class="text-danger" *ngIf="loginForm.controls['contrasenia'].errors?.required">
+          Ingrese los campos obligatorios
+      </small>
+      </div>
+     
+      <input type="submit" class="fadeIn fourth" value="Iniciar sesión" (click)="iniciarSesion()">
+
+    </form>
+
+
+    <!-- Remind Passowrd -->
+   <!--  <div id="formFooter">
+      <a class="underlineHover" href="#">Olvide mi Contraseña</a>
+    </div> -->
+
+  </div>
+
+</div>
+
+</html>

@@ -1,0 +1,73 @@
+<div class="container" style="margin-top: 5%;">
+    <div class="row">
+        <div class="col-10">
+            <table class="table table-bordered" id="table" style="font-size: 18px; margin-left: 12%;">
+                <thead align="center">
+                    <tr>
+                        <th scope="col">FECHA</th>
+                        <th scope="col">TRATAMIENTO</th>
+                        <th scope="col">COSTO</th>
+                        <th scope="col">ABONO</th>
+                        <th scope="col">SALDO</th>
+                    </tr>
+                </thead>
+                <tbody id="contenido-tabla">
+
+
+
+                    <tr align="center" *ngFor="let seg of seguimiento.tratamientos; let indice=index">
+                        <td>{{fechaseg }}</td>
+                        <td>{{seg.descripcion}}</td>
+                        <td>{{seg.costo}}</td>
+                        <td style="border:1px ;text-align:center"  >
+                            <input style="text-align:center; width:100%" class="cantidad"
+                                type="text" [(ngModel)]="seg.abono" id="abono{{indice}}" (ngModelChange)="cal()"></td>
+                        <td style="border:1px ;text-align:center" class="cantidad"  >
+                            <input style="text-align:center; width:100%"
+                                type="text"  [(ngModel)]="saldofinal[indice]" id="saldo{{indice}}" (ngModelChange)="calsaldo()" readonly></td>
+
+                    </tr>
+                    <tr align="center">
+                        <td class="table-active"></td>
+                        <td><b>TOTAL</b> </td>
+                        <td>{{total}}</td>
+                        <td class="table-active"></td>
+                        <td class="table-active"></td>
+
+                    </tr>
+                    <tr align="center">
+                        <td class="table-active"></td>
+                        <td class="table-active"></td>
+
+                        <td><b>ABONO</b> </td>
+                        <td class="abono"><input style="text-align:center; width:100%"
+                            type="text"  id="totalabono" readonly value="0"  ></td>
+                        <td class="table-active"></td>
+
+                    </tr>
+                    <tr align="center">
+                        <td class="table-active"></td>
+                        <td class="table-active"></td>
+                        <td class="table-active"></td>
+                        <td> <b>SALDO</b> </td>
+                        <td><input style="text-align:center; width:100%"
+                            type="text"  id="totalsaldo" readonly value="0"  ></td>
+                        <td class="table-active"></td>
+                    </tr>
+
+
+
+                </tbody>
+            </table>
+
+
+        </div>
+        <div class="form-group" style="margin-left: 30%;">
+
+            <button class="boton_1" style="margin-right:100px; margin-top: 10px;" (click)="actualizarSeguimiento()">GUARDAR</button>
+            <button class="boton_1" style="margin-left:100px; margin-top: 10px;" (click)="goBack()">CANCELAR</button>
+    
+        </div>
+    </div>
+  
+</div>

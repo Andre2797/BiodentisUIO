@@ -1,0 +1,39 @@
+#calendar {
+  max-width: 900px;
+  margin: 40px auto;
+}
+
+#calendar a.fc-event {
+  color: #fff; /*los estilos predeterminados de bootstrap lo hacen negro. deshacer  */
+}
+.boton-personalizado-4 {
+  text-decoration:none;
+  font-weight: 600;
+  font-size: 20px;
+  color:#333333;
+  padding-top:15px;
+  padding-bottom:15px;
+  padding-left:40px;
+  padding-right:40px;
+  background-color:#77db8c;
+  border-color: #d8d8d8;
+  border-width: 3px;
+  border-style: solid;
+  border-radius:35px;
+  }
+
+  .boton-personalizado-5 {
+    text-decoration:none;
+    font-weight: 600;
+    font-size: 20px;
+    color:#333333;
+    padding-top:15px;
+    padding-bottom:15px;
+    padding-left:40px;
+    padding-right:40px;
+    background-color:#FFD27D;
+    border-color: #d8d8d8;
+    border-width: 3px;
+    border-style: solid;
+    border-radius:35px;
+    }

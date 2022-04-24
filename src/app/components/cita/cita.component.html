@@ -1,0 +1,201 @@
+<!--   <p-fullCalendar [events]="events" [options]="options"></p-fullCalendar> -->
+<!-- <ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "ball-beat" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner> -->
+<div class="container">
+  <div id='calendar'></div>
+</div>
+
+
+
+
+
+
+<div class="modal fade right" id="modalAbandonedCart" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true" data-backdrop="false">
+  <div class="modal-dialog modal-side modal-bottom-right modal-notify modal-info" role="document">
+    <!--Content-->
+    <div class="modal-content">
+      <!--Header-->
+
+      <div class="modal-header bg-info">
+        <h5 class="modal-title" id="titulo">Registro de Eventos</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+
+
+
+      <!--Body-->
+      <div class="modal-body">
+
+        <form id="formulario" autocomplete="off">
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-floating mb-3">
+
+                  <input id="title" type="text" class="form-control" name="title">
+                  <label for="title">Evento</label>
+                </div>
+
+              </div>
+              <div class="col-md-12">
+                <div class="form-floating mb-3">
+                  <input class="form-control" id="nombre" name="nombre">
+                  <label for="" class="form-label">Nombre</label>
+
+                </div>
+                <div class="form-floating mb-3">
+                  <input class="form-control" id="apellido" name="apellido">
+                  <label for="" class="form-label">Apellido</label>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-floating mb-3">
+                  <input class="form-control" id="start" type="datetime-local" name="start">
+                  <label for="" class="form-label">Fecha</label>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">CANCELAR</button>
+
+            <button type="submit" class="btn btn-primary" style="background-color: #30D9E8; color: black;" id="btnAccion">Guardar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <!--/.Content-->
+  </div>
+</div>
+
+
+
+
+<div class="modal fade right" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true" data-backdrop="false">
+  <div class="modal-dialog modal-side modal-bottom-right modal-notify modal-info" role="document">
+    <!--Content-->
+    <div class="modal-content">
+      <!--Header-->
+
+      <div class="modal-header bg-info">
+        <h5 class="modal-title" id="tituloedit">Registro de Eventos</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <!--Body-->
+      <div class="modal-body">
+
+        <form id="formularioedit" autocomplete="off">
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-floating mb-3">
+
+                  <input id="titleedit" type="text" class="form-control" name="title">
+                  <label for="title">Evento</label>
+                </div>
+
+              </div>
+              <div class="col-md-12">
+                <div class="form-floating mb-3">
+                  <input class="form-control" id="nombreedit" name="nombre">
+                  <label for="" class="form-label">Nombre</label>
+
+                </div>
+                <div class="form-floating mb-3">
+                  <input class="form-control" id="apellidoedit" name="apellido">
+                  <label for="" class="form-label">Apellido</label>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-floating mb-3">
+                  <input class="form-control" id="startedit" type="datetime-local" name="start">
+                  <label for="" class="form-label">Fecha</label>
+                </div>
+
+              </div>
+
+              <div class="col-md-12">
+                <label for="" class="form-label">Sucursales</label>                 
+                  <select class="form-control" id="sucu">
+                  <option value="">-- seleccione una opción --</option>
+                  <option  *ngFor="let su of sucu" value="{{su._id}}">{{su.nombre}}</option>
+                 
+                </select>
+              </div>
+
+              <div class="col-md-12">
+                <label for="" class="form-label">Odontologos</label>
+                  <select
+                  class="form-control" id="odo" 
+                  >
+                  <option value="">-- seleccione una opción --</option>
+                  <option *ngFor="let odo of odos" value="{{odo._id}}">{{odo.nombre}} {{odo.apellido}}</option>
+                </select>
+              </div>
+
+            </div>
+          </div>
+          <div class="modal-footer">
+            <!--  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button> -->
+
+            <button type="button" class="btn btn-info" id="btnAsistir">ASISTIÓ</button>
+            <button type="button" class="btn btn-danger" id="btnEliminaredit">ELIMINAR CITA</button>
+            <button type="submit" class="btn btn-primary" id="btnAccionedit">GUARDAR CITA</button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+    <!--/.Content-->
+  </div>
+</div>
+
+
+
+
+<div class="modal fade right  " id="modalAsistir" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true" data-backdrop="false">
+  <div class="modal-dialog modal-side modal-bottom-right modal-notify modal-info modal-lg" role="document">
+    <!--Content-->
+    <div class="modal-content">
+      <!--Header-->
+
+      <div class="modal-header bg-info">
+        <h1 class="modal-title" id="tituloCita">Confirmar Cita</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <!--Body-->
+      <div class="modal-body">
+
+
+        <div class="modal-body">
+          <div style="justify-content: center; align-items: center;">
+
+            <h1 style="margin-left: 30%;">Paciente Asistio a su Cita</h1>
+          </div>
+
+        </div>
+      </div>
+      <div class="col" style="margin-left: -10%;">
+        <div class="modal-footer">
+
+          <button type="button" data-bs-dismiss="modal" routerLink="/menu/historia" class="boton-personalizado-4 ">
+            <mat-icon>add_circle</mat-icon>
+            <span> Nuevo Paciente</span>
+          </button>
+          <button type="button"  data-bs-dismiss="modal" routerLink="/menu/tabla-Historias-Clinicas" class="boton-personalizado-5">
+            <mat-icon>library_books</mat-icon>
+            Chequeo Odontologico
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+  <!--/.Content-->
+</div>

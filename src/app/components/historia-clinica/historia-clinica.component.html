@@ -1,0 +1,564 @@
+<div class="container">
+    <div class="row">
+        <img class="biodentis" src="../../../assets/img/logo_biodentis.PNG">
+        <h2 style="margin-left: 35%; margin-right: 120px;font-weight: bold">CENTRO ODONTOLÓGICO &nbsp;</h2>
+        <img style=" width:50%;
+            margin-left:170px;" src="../../../assets/img/biodentis_preview_rev_1.png" />
+        <h3 style="margin-left:28%; font-family: Georgia; margin-right: 10%;">HISTORIA CLINICA ODONTOLÓGICA</h3>
+        <div class="input-group input-group-icon" style="margin-top:40px; float:right;">
+            <div class="input-icono" style="margin-left: 80%;">
+                <input type="number" name="input" readonly placeholder="NHCL" id="input" style="width: 80%;" />
+            </div>
+        </div>
+
+    </div>
+    <br>
+
+    <div *ngIf="pacienteSave">
+        <form class="custom-form" [formGroup]="pacienteForm">
+
+            <div class="row" style="margin: auto; height: auto; margin-top: -20px;">
+                <div class="circle">
+                    <p>Datos Personales</p>
+                </div>
+                <div class="circleform ">
+                    <div class="input-group input-group-icon ">
+                        <label class="label_form">NOMBRES</label>
+                        <br>
+                        <br>
+                        <input class="input_form form-control " type="text" formControlName="nombre" name="nombre"
+                            required value="{{pacienteSave.nombre}}" readonly />
+                        <div *ngIf="pacienteForm.controls['nombre'].touched && pacienteForm.controls['nombre'].invalid">
+                            <small style="font-weight: bold; font-family: monospace; color: red;"
+                                *ngIf="pacienteForm.controls['nombre'].errors?.required">
+                                ******* Ingrese los campos obligatorios ******
+                            </small>
+                            <small style="font-weight: bold; font-family: monospace; color: red;"
+                                *ngIf="pacienteForm.controls['nombre'].errors?.['maxlength']">
+                                ***** (Debe tener como máximo 25 caracteres) ****
+                            </small>
+                        </div>
+                        <br>
+                        <br>
+
+                    </div>
+                    <br>
+                    <div class="input-group input-group-icon">
+                        <label class="label_form">APELLIDOS</label>
+                        <br>
+                        <br>
+                        <input class="input_form form-control" type="text" formControlName="apellido" name="apellido"
+                            required value="{{pacienteSave.apellido}}" readonly />
+                        <div
+                            *ngIf="pacienteForm.controls['apellido'].touched && pacienteForm.controls['apellido'].invalid">
+                            <small style="font-weight: bold; font-family: monospace; color: red;"
+                                *ngIf="pacienteForm.controls['apellido'].errors?.required">
+                                ******* Ingrese los campos obligatorios ******
+                            </small>
+                            <small style="font-weight: bold; font-family: monospace; color: red;"
+                                *ngIf="pacienteForm.controls['apellido'].errors?.['maxlength']">
+                                ***** (Debe tener como máximo 30 caracteres) ****
+                            </small>
+                        </div>
+                        <br>
+                        <br>
+                    </div>
+                    <br>
+                    <div class="input-group input-group-icon">
+                        <label class="label_form">NÚMERO DE CEDULA</label>
+                        <br>
+                        <br>
+                        <input class="input_form form-control" type="text" formControlName="numCedula" name="numCedula"
+                            required value="{{pacienteSave.numCedula}}" readonly />
+
+                        <div
+                            *ngIf="pacienteForm.controls['numCedula'].touched && pacienteForm.controls['numCedula'].invalid">
+                            <small style="font-weight: bold; font-family: monospace; color: red;"
+                                *ngIf="pacienteForm.controls['numCedula'].errors?.required">
+                                ******* Ingrese los campos obligatorios ******
+                            </small>
+                            <small style="font-weight: bold; font-family: monospace; color: red;"
+                                *ngIf="pacienteForm.controls['numCedula'].errors?.['maxlength']">
+                                ***** (Debe tener como máximo 10 caracteres) ****
+                            </small>
+                        </div>
+                        <br>
+                        <br>
+
+                    </div>
+                    <br>
+
+                    <div class="input-group input-group-icon">
+
+                        <div class="input-group input-group-icon  ">
+                            <label class="label_form">SEXO</label>
+
+                            <label class="rad-label">
+                                <input type="radio" class="rad-input" name="sexo" value="{{sexoFEdit}}" readonly
+                                    formControlName="sexo">
+                                <div class="rad-design"></div>
+                                <div class="rad-text">Femenino</div>
+                            </label>
+
+                            <label class="rad-label">
+                                <input type="radio" class="rad-input" name="sexo" value="{{sexoHEdit}}" readonly
+                                    formControlName="sexo">
+                                <div class="rad-design"></div>
+                                <div class="rad-text">Masculino</div>
+                            </label>
+                        </div>
+                        <br>
+                        <br>
+                    </div>
+
+                    <div class="input-group input-group-icon col-6md">
+                        <label class="label_form">EDAD</label>
+                        <br>
+                        <br>
+                        <input class="input_form_edad form-control" readonly type="number" id='edad_input' value=""
+                            formControlName="edad" name="edad" required value="{{pacienteSave.edad}}" readonly />
+                        <div class="input-group input-group-icon"
+                            *ngIf="pacienteForm.controls['edad'].touched && pacienteForm.controls['edad'].invalid">
+                            <small style="font-weight: bold; font-family: monospace; color: red;"
+                                *ngIf="pacienteForm.controls['edad'].errors?.required">
+                                ******* Ingrese los campos obligatorios ******
+                            </small>
+                        </div>
+                        <br>
+                    </div>
+                    <div class="input-group input-group-icon">
+                        <label class="label_form">MAIL</label>
+                        <br>
+                        <br>
+                        <input class="input_form form-control" type="email" formControlName="correo" name="correo"
+                            required value="{{pacienteSave.correo}}" />
+                        <br>
+                        <div class="input-group input-group-icon"
+                            *ngIf="pacienteForm.controls['correo'].touched && pacienteForm.controls['correo'].invalid">
+                            <small style="font-weight: bold; font-family: monospace; color: red;"
+                                *ngIf="pacienteForm.controls['correo'].errors?.required">
+                                ******* Ingrese los campos obligatorios ******
+                            </small>
+                            <small style="font-weight: bold; font-family: monospace; color: red;"
+                                *ngIf="pacienteForm.controls['correo'].errors?.email">
+                                ***** Correo invalido ****
+                            </small>
+                        </div>
+                        <br>
+                        <br>
+
+                    </div>
+
+
+                    <div class="input-group input-group-icon">
+                        <label class="label_form ">CELULAR</label>
+                        <br>
+                        <br>
+                        <input class="input_form  form-control" type="text" formControlName="celular" name="celuar"
+                            required value="{{pacienteSave.celular}}" />
+                        <br>
+                        <div class="input-group input-group-icon"
+                            *ngIf="pacienteForm.controls['celular'].touched && pacienteForm.controls['celular'].invalid">
+                            <small style="font-weight: bold; font-family: monospace; color: red;"
+                                *ngIf="pacienteForm.controls['celular'].errors?.required">
+                                ******* Ingrese los campos obligatorios ******
+                            </small>
+
+                            <small style="font-weight: bold; font-family: monospace; color: red;"
+                                *ngIf="pacienteForm.controls['celular'].errors?.['maxlength']">
+                                ***** (Debe tener como máximo 10 caracteres) ****
+                            </small>
+                        </div>
+                        <br>
+                        <br>
+                    </div>
+                    <div class="input-group input-group-icon">
+                        <label class="label_form">DOMIICILIO</label>
+                        <br>
+                        <br>
+                        <input class="input_form form-control" type="text" formControlName="direccion" name="direccion"
+                            required value="{{pacienteSave.direccion}}" />
+                        <br>
+                        <div
+                            *ngIf="pacienteForm.controls['direccion'].touched && pacienteForm.controls['direccion'].invalid">
+                            <small style="font-weight: bold; font-family: monospace; color: red;"
+                                *ngIf="pacienteForm.controls['direccion'].errors?.required">
+                                ******* Ingrese los campos obligatorios ******
+                            </small>
+                        </div>
+                        <br>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row" style="margin: auto; height: 100%;">
+                <button type="button" href="" class="boton_1" style="margin-left:400px; margin-top: 10px;"
+                    (click)="updatePaciente()">Actualizar Datos</button>
+            </div>
+        </form>
+    </div>
+
+    <div  [hidden]="!edited">
+        <form class="custom-form" [formGroup]="pacienteForm">
+            <div class="row" style="margin: auto; height: auto; margin-top: -20px;">
+                <div class="circle">
+                    <p>Datos Personales</p>
+                </div>
+                <div class="circleform ">
+                    <div class="input-group input-group-icon ">
+                        <label class="label_form">NOMBRES</label>
+                        <br>
+                        <br>
+                        <input class="input_form form-control " type="text" formControlName="nombre" name="nombre"
+                            required />
+                        <div *ngIf="pacienteForm.controls['nombre'].touched && pacienteForm.controls['nombre'].invalid">
+                            <small style="font-weight: bold; font-family: monospace; color: red;"
+                                *ngIf="pacienteForm.controls['nombre'].errors?.required">
+                                ******* Ingrese los campos obligatorios ******
+                            </small>
+                            <small style="font-weight: bold; font-family: monospace; color: red;"
+                                *ngIf="pacienteForm.controls['nombre'].errors?.['maxlength']">
+                                ***** (Debe tener como máximo 25 caracteres) ****
+                            </small>
+                        </div>
+                        <br>
+                        <br>
+                    </div>
+                    <br>
+                    <div class="input-group input-group-icon">
+                        <label class="label_form">APELLIDOS</label>
+                        <br>
+                        <br>
+                        <input class="input_form form-control" type="text" formControlName="apellido" name="apellido"
+                            required />
+                        <div
+                            *ngIf="pacienteForm.controls['apellido'].touched && pacienteForm.controls['apellido'].invalid">
+                            <small style="font-weight: bold; font-family: monospace; color: red;"
+                                *ngIf="pacienteForm.controls['apellido'].errors?.required">
+                                ******* Ingrese los campos obligatorios ******
+                            </small>
+                            <small style="font-weight: bold; font-family: monospace; color: red;"
+                                *ngIf="pacienteForm.controls['apellido'].errors?.['maxlength']">
+                                ***** (Debe tener como máximo 30 caracteres) ****
+                            </small>
+                        </div>
+                        <br>
+                        <br>
+                    </div>
+                    <br>
+                    <div class="input-group input-group-icon">
+                        <label class="label_form">NÚMERO DE CEDULA</label>
+                        <br>
+                        <br>
+                        <input class="input_form form-control" type="text" formControlName="numCedula" name="numCedula"
+                            required />
+                        <div
+                            *ngIf="pacienteForm.controls['numCedula'].touched && pacienteForm.controls['numCedula'].invalid">
+                            <small style="font-weight: bold; font-family: monospace; color: red;"
+                                *ngIf="pacienteForm.controls['numCedula'].errors?.required">
+                                ******* Ingrese los campos obligatorios ******
+                            </small>
+                            <small style="font-weight: bold; font-family: monospace; color: red;"
+                                *ngIf="pacienteForm.controls['numCedula'].errors?.['maxlength']">
+                                ***** (Debe tener como máximo 10 caracteres) ****
+                            </small>
+                        </div>
+                        <br>
+                        <br>
+                    </div>
+                    <br>
+                    <div class="input-group input-group-icon">
+                        <div class="input-group input-group-icon  ">
+                            <label class="label_form">SEXO</label>
+                            <label class="rad-label">
+                                <input type="radio" class="rad-input" name="sexo" value="F" formControlName="sexo">
+                                <div class="rad-design"></div>
+                                <div class="rad-text">Femenino</div>
+                            </label>
+
+                            <label class="rad-label">
+                                <input type="radio" class="rad-input" name="sexo" value="M" formControlName="sexo">
+                                <div class="rad-design"></div>
+                                <div class="rad-text">Masculino</div>
+                            </label>
+
+
+                        </div>
+                        <br>
+                        <br>
+
+                    </div>
+
+                    <div class="input-group input-group-icon col-6md">
+
+                        <label class="label_form">FECHA DE NACIMEINTO</label>
+                        <br>
+                        <br>
+                        <!--   <input class="input_form_date form-control" type="date" formControlName="fechaNacimiento" id='fecha'
+                            name="fechaNacimiento" required /> -->
+                        <div>
+                            <mat-form-field class="input_form_date " appearance="fill">
+                                <br>
+                                <mat-label>Choose a date</mat-label>
+                                <input matInput [max]="maxDate" [matDatepicker]="picker" class="form-control"
+                                    formControlName="fechaNacimiento" id='fecha' name="fechaNacimiento" required />
+
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+
+                                <div class="input-group input-group-icon"
+                                    *ngIf="pacienteForm.controls['fechaNacimiento'].touched && pacienteForm.controls['fechaNacimiento'].invalid">
+                                    <small
+                                        style="font-weight: bold; font-family: monospace; color: red; margin-top: -120px;"
+                                        *ngIf="pacienteForm.controls['fechaNacimiento'].errors?.required">
+                                        ******* Ingrese los campos obligatorios ******
+                                    </small>
+                                </div>
+                                <mat-datepicker #picker panelClass="datepickerOne"></mat-datepicker>
+
+
+                            </mat-form-field>
+
+                            <br>
+                        </div>
+
+
+
+                        <br>
+                        <br>
+
+
+                        <br>
+
+                        <br>
+                        <br>
+
+                        <label class="label_form">EDAD</label>
+                        <br>
+                        <br>
+                        <input class="input_form_edad form-control" readonly type="number" id='edad_input' value=""
+                            formControlName="edad" name="edad" (click)="CalculateAge()" required />
+                        <div class="input-group input-group-icon"
+                            *ngIf="pacienteForm.controls['edad'].touched && pacienteForm.controls['edad'].invalid">
+                            <small style="font-weight: bold; font-family: monospace; color: red;"
+                                *ngIf="pacienteForm.controls['edad'].errors?.required">
+                                ******* Ingrese los campos obligatorios ******
+                            </small>
+                        </div>
+
+                        <br>
+                    </div>
+
+
+
+                    <div class="input-group input-group-icon">
+
+                        <label class="label_form">MAIL</label>
+                        <br>
+                        <br>
+                        <input class="input_form form-control" type="email" formControlName="correo" name="correo"
+                            required />
+                        <br>
+                        <div class="input-group input-group-icon"
+                            *ngIf="pacienteForm.controls['correo'].touched && pacienteForm.controls['correo'].invalid">
+                            <small style="font-weight: bold; font-family: monospace; color: red;"
+                                *ngIf="pacienteForm.controls['correo'].errors?.required">
+                                ******* Ingrese los campos obligatorios ******
+                            </small>
+                            <small style="font-weight: bold; font-family: monospace; color: red;"
+                                *ngIf="pacienteForm.controls['correo'].errors?.email">
+                                ***** Correo invalido ****
+                            </small>
+                        </div>
+                        <br>
+                        <br>
+
+                    </div>
+
+
+                    <div class="input-group input-group-icon">
+                        <label class="label_form ">CELULAR</label>
+                        <br>
+                        <br>
+                        <input class="input_form  form-control" type="text" formControlName="celular" name="celuar"
+                            required />
+                        <br>
+                        <div class="input-group input-group-icon"
+                            *ngIf="pacienteForm.controls['celular'].touched && pacienteForm.controls['celular'].invalid">
+                            <small style="font-weight: bold; font-family: monospace; color: red;"
+                                *ngIf="pacienteForm.controls['celular'].errors?.required">
+                                ******* Ingrese los campos obligatorios ******
+                            </small>
+
+                            <small style="font-weight: bold; font-family: monospace; color: red;"
+                                *ngIf="pacienteForm.controls['celular'].errors?.['maxlength']">
+                                ***** (Debe tener como máximo 10 caracteres) ****
+                            </small>
+                        </div>
+                        <br>
+                        <br>
+                    </div>
+                    <div class="input-group input-group-icon">
+                        <label class="label_form">DOMIICILIO</label>
+                        <br>
+                        <br>
+                        <input class="input_form form-control" type="text" formControlName="direccion" name="direccion"
+                            required />
+                        <br>
+                        <div
+                            *ngIf="pacienteForm.controls['direccion'].touched && pacienteForm.controls['direccion'].invalid">
+                            <small style="font-weight: bold; font-family: monospace; color: red;"
+                                *ngIf="pacienteForm.controls['direccion'].errors?.required">
+                                ******* Ingrese los campos obligatorios ******
+                            </small>
+                        </div>
+                        <br>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row" style="margin: auto; height: 100%;" [hidden]="second">
+                <button type="button" href="" class="boton_1" style="margin-left:400px; margin-top: 10px;"
+                    (click)="newPaciente()">Siguiente>></button>
+
+            </div>
+
+            <hr>
+
+            <br>
+
+
+        </form>
+
+
+        <form class="custom-form" [formGroup]="historiaForm" [hidden]="!second">
+            <div class="row" style="margin: auto; height: 100%" >
+                <div class="circle">
+                    <p>Signos Vitales</p>
+                </div>
+                <div class="circleform_signos">
+                    <br>
+                    <div class="input-group input-group-icon" >
+                        <label class="label_form">PRESIÓN ARTERIAL</label>
+                        <br>
+                        <br>
+                        <input class="input_form form-control" type="text" formControlName="presion" name="presion" />
+                        <label class="label_form">mmHg</label>
+                    </div>
+                    <br>
+                    <div class="input-group input-group-icon">
+
+                        <label class="label_form">PESO</label>
+                        <br>
+                        <br>
+                        <input class="input_form form-control" type="text" formControlName="peso" name="peso" /> <label
+                            class="label_form">KG</label>
+                    </div>
+                    <br>
+                    <div class="input-group input-group-icon">
+                        <label class="label_form">TEMPERATURA</label>
+                        <br>
+                        <br>
+                        <input class="input_form form-control" type="text" formControlName="temperatura"
+                            name="temperatura" /> <label class="label_form">°C</label>
+                    </div>
+                    <br>
+
+                </div>
+                <br>
+
+            </div>
+            <hr>
+            <br>
+            <div class="row" style="margin: auto; height: 100%" >
+
+                <div class="circle">
+
+                    <p>Antecedentes Médicos</p>
+
+                </div>
+                <div class="circleform_questions">
+                    <div class="input-group input-group-icon">
+
+                        <div class="input-group input-group-icon">
+
+                            <div class="input-group input-group-icon  ">
+                                <label class="label_form">SE ENCUNTRA BAJO TRATAMIENTO MÉDICO?</label>
+
+                                <label class="rad-label">
+                                    <input type="radio" class="rad-input" name="tratamientoMedico" value="S"
+                                        formControlName="tratamientoMedico">
+                                    <div class="rad-design"></div>
+                                    <div class="rad-text">SI</div>
+                                </label>
+
+                                <label class="rad-label">
+                                    <input type="radio" class="rad-input" name="tratamientoMedico" value="N"
+                                        formControlName="tratamientoMedico">
+                                    <div class="rad-design"></div>
+                                    <div class="rad-text">NO</div>
+                                </label>
+                                <label class="label_form">COMPLICACIONES POR ANESTESIA EN LA BOCA?</label>
+
+                                <label class="rad-label">
+                                    <input type="radio" class="rad-input" name="anestesia" value="S"
+                                        formControlName="anestesia">
+                                    <div class="rad-design"></div>
+                                    <div class="rad-text">SI</div>
+                                </label>
+
+                                <label class="rad-label">
+                                    <input type="radio" class="rad-input" name="anestesia" value="N"
+                                        formControlName="anestesia">
+                                    <div class="rad-design"></div>
+                                    <div class="rad-text">NO</div>
+                                </label>
+
+
+                            </div>
+
+
+
+                            <label class="label_form">ALÉRGICO A ALGÚN MEDICAMENTO?</label>
+
+                            <label class="rad-label">
+                                <input type="radio" class="rad-input" name="alergia" value="S"
+                                    formControlName="alergia">
+                                <div class="rad-design"></div>
+                                <div class="rad-text">SI</div>
+                            </label>
+
+                            <label class="rad-label">
+                                <input type="radio" class="rad-input" name="alergia" value="N"
+                                    formControlName="alergia">
+                                <div class="rad-design"></div>
+                                <div class="rad-text">NO</div>
+                            </label>
+
+                            <label class="label_form">ES USTED PROPENSO A HEMORRAGIAS?</label>
+
+                            <label class="rad-label">
+                                <input type="radio" class="rad-input" name="hemoragia" value="S"
+                                    formControlName="hemoragia">
+                                <div class="rad-design"></div>
+                                <div class="rad-text">SI</div>
+                            </label>
+
+                            <label class="rad-label">
+                                <input type="radio" class="rad-input" name="hemoragia" value="N"
+                                    formControlName="hemoragia">
+                                <div class="rad-design"></div>
+                                <div class="rad-text">NO</div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="row" style="margin: auto; height: 100%;">
+                    <button href="" class="boton_1" style="margin-right:100px; margin-top: 10px;"
+                        (click)="newHiatoria()">GUARDAR</button>
+                    <button href="" class="boton_1" style="margin-left:100px; margin-top: 10px;" (click)="goBack()">CANCELAR</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

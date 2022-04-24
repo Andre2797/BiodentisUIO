@@ -1,0 +1,152 @@
+<h1>Odontograma </h1> <h1 id="nombrepac"></h1>
+<div class="col-12 mt-1" style="margin-right: 20%;">
+	<button class="btn btn-secondary" for="borracha" id="borracha"><i class="fas fa-eraser"></i> Limpiar</button>
+	<button type="button" class="btn btn-secondary" id="saveBtn"><i class="fas fa-save"></i> Guardar
+		Odontograma</button>
+	<button type="button" class="btn btn-secondary" id="btntratamiento" disabled routerLink="/menu/tratamiento" ><i class="fas fa-save"></i> Registrar
+		Tratamiento</button>
+
+</div>
+<div class="dark-mode">
+
+	<div id="control" class="container">
+	</div>
+
+	<div id="canva-group">
+		<canvas id="camada1Odontograma"></canvas>
+		<canvas id="camada2Odontograma"></canvas>
+		<canvas id="camada3Odontograma"></canvas>
+		<canvas id="camada4Odontograma"></canvas>
+
+		<canvas id="camadaPincel"></canvas>
+	</div>
+
+	<div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="modalLabel">Adicionar procedimientos</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<div class="form-row">
+						<input type="hidden" id="procedimentosRemovidos" th:field="*{procedimentosRemovidos}">
+						<div id="procedimentosDiv"></div>
+						<div class="form-group col-md-12">
+							<label for="nomeProcedimento">Nombre</label>
+							<i data-type="info" class="fas fa-info-circle fa-1x text-info"
+								onclick="toast_message('.','info')" style="margin-left: 5px; cursor: pointer;"></i>
+							<select class="form-control" id="nomeProcedimento">
+								<option selected value="">-- Selecciona una opcion --</option>
+								<!-- <option th:value="${null}" th:text="${'NÃO INFORMADO'}"></option> -->
+								<!-- <option th:each="model : ${modelEnums}" th:value="${model}" th:text="${model.denominacao}"></option> -->
+							</select>
+						</div>
+						<div class="form-group col-12" id="colOutroProcedimento">
+							<label for="outroProcedimento">Otro procedimento</label>
+							<i style="margin-left:5px;cursor: pointer;"
+								class="alerta fas fa-info-circle fa-1x text-info" data-type="info"
+								onclick="mensagens('.','info')"></i>
+							<input id="outroProcedimento" class="form-control" type="text">
+						</div>
+
+						<div class="col-m-4">
+							<div class='form-group'>
+								<label for="exampleColorInput" class="form-label">Color</label>
+								<i style="margin-left:5px;cursor: pointer;"
+									class="alerta fas fa-info-circle fa-1x text-info" data-type="info"
+									onclick="mensagens('.','info')"></i>
+								<input type="color" id="cor" disabled class="form-control form-control-color"
+									value="#563d7c" title="Choose your color">
+							</div>
+						</div>
+
+						<div class="col-m-4">
+							<div class='form-group'>
+								<label class="form-label">Simbolo</label>
+								<i style="margin-left:5px;cursor: pointer;"
+									class="alerta fas fa-info-circle fa-1x text-info" data-type="info"
+									onclick="mensagens('.','info')"></i>
+								<input type="text" id="letra" disabled class="form-control form-control-color"
+									title="Choose your color">
+							</div>
+						</div>
+
+						<div class="form-group col-12">
+							<label for="informacoesAdicionais">Diagnóstico</label>
+							<i style="margin-left:5px;cursor: pointer;"
+								class="alerta fas fa-info-circle fa-1x text-info" data-type="info"
+								onclick="mensagens('.','info')"></i>
+							<textarea rows="2" id="informacoesAdicionais" maxlength="5000"
+								class="form-control"></textarea>
+						</div>
+					
+						<div class="container">
+							<div class=" form-group d-inline   " style="text-align: center; box-sizing: revert;">
+								<a id="botaoAdicionar" class="form-control btn btn-secondary btnCorNovo "
+									style=" align-items: center;  margin-bottom: 15%; color: white;">
+									<i class="fas fa-plus"> </i>Guardar
+								</a>
+
+							</div>
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group col-md-12">
+							<div class="panel panel-default">
+								<div class="table-responsive" style="margin-top: -10% !important;">
+									<table class="table display dataTable table-bordered table-striped"
+										id="tabelaTestesEspecificosForm">
+										<thead class="tableSize">
+											<tr>
+												<th>NOMBRE</th>
+												<th>DIAGNÓSTICO</th>
+												<th class="text-center">ELIMINAR</th>
+											</tr>
+										</thead>
+										<tbody id="bodyProcedimentos">
+											<tr>
+												<td></td>
+												<td></td>
+												<td></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!----
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Guardar</button>
+				</div>
+				-->
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="configuracoesFerramenta" tabindex="-1" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					...
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary">Save changes</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+
+
+
+
