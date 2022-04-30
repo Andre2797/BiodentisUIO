@@ -5,6 +5,7 @@ import { Paciente } from '../historia-clinica/IPaciente';
 import { OdontogramaService } from 'src/app/services/odontograma.service';
 import { Router } from '@angular/router';
 import { TratamientoService } from '../../services/tratamiento.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 interface IPaginate {
   itemsPerPage: number[],
   currentPage: number,
@@ -32,12 +33,17 @@ export class TablaHistoriasClinicasComponent implements OnInit {
   }
 
   constructor(private pacienteService: PacienteService,private odoService: OdontogramaService,private seguimientoService: TratamientoService
-    , private router: Router) {
+    , private router: Router,private spinner: NgxSpinnerService) {
 
 
   }
 
   ngOnInit(): void {
+    setTimeout(() => {
+      /** spinner ends after 5 seconds */
+     
+      this.spinner.hide();
+  }, 5000);
     this.fetchPacientes();
 
   }
@@ -108,9 +114,11 @@ export class TablaHistoriasClinicasComponent implements OnInit {
     const nombre = <HTMLInputElement>document.getElementById("option-1");
     var isCheckedname = nombre.checked;
     if (isCheckedname) {
+      $("#busqueda").val('');
       this.buscarpaciente.numCedula = buscar
       this.buscarpaciente.nombre = null
     } else {
+      $("#busqueda").val('');
       this.buscarpaciente.nombre = buscar
       this.buscarpaciente.numCedula = null
     }
@@ -120,6 +128,7 @@ export class TablaHistoriasClinicasComponent implements OnInit {
         console.log(res)
           ;
         this.paciente = res;
+        $("#busqueda").val('');
       },
       err => console.log(err)
       

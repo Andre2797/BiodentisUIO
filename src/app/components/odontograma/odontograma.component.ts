@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { OdontogramaService } from 'src/app/services/odontograma.service';
 import {odo} from '../../../assets/js/odontograma.js'
 import {pincel} from '../../../assets/js/pincel.js'
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-odontograma',
@@ -10,7 +11,7 @@ import {pincel} from '../../../assets/js/pincel.js'
 })
 export class OdontogramaComponent implements OnInit {
 
-  constructor( private odoService: OdontogramaService) { }
+  constructor( private odoService: OdontogramaService,private spinner: NgxSpinnerService) { }
   
   ngOnInit(): void {
     
@@ -27,6 +28,11 @@ export class OdontogramaComponent implements OnInit {
         });
       })
       localStorage.removeItem('procedimentos')
+      setTimeout(() => {
+        /** spinner ends after 5 seconds */
+       
+        this.spinner.hide();
+    }, 5000);
       odo();
       pincel();
  

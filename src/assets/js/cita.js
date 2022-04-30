@@ -107,13 +107,14 @@ async function cita() {
 
       const res = await (fetch(request));
       const citasinformato = await res.json();
+      
       console.log(moment(info.event.start).format('DD/MM/YYYY HH:mm'))
       console.log("RESERVA ID", citasinformato)
       idedit = citasinformato._id;
       document.getElementById('nombreedit').value = citasinformato.nombre;
       document.getElementById('apellidoedit').value = citasinformato.apellido;
       document.getElementById('titleedit').value = citasinformato.motivo;
-      document.getElementById('startedit').value = moment(info.event.start).format('YYYY-MM-DDThh:mm')
+      document.getElementById('startedit').value = moment(info.event.start).tz('America/New_York').format('YYYY-MM-DDThh:mm')
 
 
 

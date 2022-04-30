@@ -247,7 +247,7 @@ export class HistoriaClinicaComponent implements OnInit {
           err => console.log(err)
         )
     } else {
-      this.notifyService.showError("Campos requeridos se encuntran vacios", "Campos requeridos")
+      this.notifyService.showError("Campos requeridos se encuentran vacios", "Campos requeridos")
     }
 
 
@@ -290,7 +290,7 @@ export class HistoriaClinicaComponent implements OnInit {
           err => console.log(err)
         )
     } else {
-      this.notifyService.showError("Campos requeridos se encuntran vacios", "Campos requeridos")
+      this.notifyService.showError("Campos requeridos se encuentran vacios", "Campos requeridos")
 
 
     }
