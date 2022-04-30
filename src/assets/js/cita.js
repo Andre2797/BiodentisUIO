@@ -114,8 +114,8 @@ async function cita() {
       document.getElementById('nombreedit').value = citasinformato.nombre;
       document.getElementById('apellidoedit').value = citasinformato.apellido;
       document.getElementById('titleedit').value = citasinformato.motivo;
-      document.getElementById('startedit').value = moment(info.event.start).format('YYYY-MM-DDThh:mm').toLocaleString("en-US", {timeZone: "America/New_York"})
-
+      document.getElementById('startedit').value = moment.tz(info.event.start, "America/New_York").format('YYYY-MM-DDThh:mm')
+      
 
 
 

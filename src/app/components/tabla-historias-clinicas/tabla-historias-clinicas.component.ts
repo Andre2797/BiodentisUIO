@@ -39,12 +39,14 @@ export class TablaHistoriasClinicasComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    
+    this.fetchPacientes();
+    this.spinner.show();
     setTimeout(() => {
       /** spinner ends after 5 seconds */
      
       this.spinner.hide();
   }, 5000);
-    this.fetchPacientes();
 
   }
   

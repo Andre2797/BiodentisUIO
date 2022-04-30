@@ -28,6 +28,7 @@ export class OdontogramaComponent implements OnInit {
         });
       })
       localStorage.removeItem('procedimentos')
+      this.spinner.show();
       setTimeout(() => {
         /** spinner ends after 5 seconds */
        

@@ -47,6 +47,7 @@
     "jquery": "^3.6.0",
     "jquery-datepicker": "^1.12.3",
     "jquery-datetimepicker": "^2.5.21",
+    "moment-timezone": "^0.5.34",
     "ng2-date-picker": "^13.0.0-rc1",
     "ngx-pagination": "^5.1.1",
     "ngx-spinner": "^12.0.0",
