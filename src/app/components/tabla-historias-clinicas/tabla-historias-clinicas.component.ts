@@ -6,6 +6,7 @@ import { OdontogramaService } from 'src/app/services/odontograma.service';
 import { Router } from '@angular/router';
 import { TratamientoService } from '../../services/tratamiento.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { NotificationService } from '../../services/notification.service';
 interface IPaginate {
   itemsPerPage: number[],
   currentPage: number,
@@ -32,24 +33,24 @@ export class TablaHistoriasClinicasComponent implements OnInit {
     totalItems: this.count
   }
 
-  constructor(private pacienteService: PacienteService,private odoService: OdontogramaService,private seguimientoService: TratamientoService
-    , private router: Router,private spinner: NgxSpinnerService) {
+  constructor(private pacienteService: PacienteService, private odoService: OdontogramaService, private seguimientoService: TratamientoService
+    , private router: Router, private spinner: NgxSpinnerService,private notifyService: NotificationService) {
 
 
   }
 
   ngOnInit(): void {
-    
+
     this.fetchPacientes();
     this.spinner.show();
     setTimeout(() => {
       /** spinner ends after 5 seconds */
-     
+
       this.spinner.hide();
-  }, 5000);
+    }, 5000);
 
   }
-  
+
 
   fetchPacientes() {
     this.pacienteService.pacientes(this.page, 5)
@@ -77,109 +78,115 @@ export class TablaHistoriasClinicasComponent implements OnInit {
     numCedula: ''
   }
 
-  changeinput(){
-    if( $('#option-1').is(':checked') ) {
-     
-      $("#busqueda").keydown(function(event) {
-        if(event.shiftKey)
-        {
-             event.preventDefault();
+  changeinput() {
+    if ($('#option-1').is(':checked')) {
+
+      $("#busqueda").keydown(function (event) {
+        if (event.shiftKey) {
+          event.preventDefault();
         }
-   
-        if (event.keyCode == 46 || event.keyCode == 8)    {
+
+        if (event.keyCode == 46 || event.keyCode == 8) {
         }
         else {
-             if (event.keyCode < 95) {
-               if (event.keyCode < 48 || event.keyCode > 57) {
-                     event.preventDefault();
-               }
-             } 
-             else {
-                   if (event.keyCode < 96 || event.keyCode > 105) {
-                       event.preventDefault();
-                   }
-             }
-           }
-        });
-      
-  }
- 
+          if (event.keyCode < 95) {
+            if (event.keyCode < 48 || event.keyCode > 57) {
+              event.preventDefault();
+            }
+          }
+          else {
+            if (event.keyCode < 96 || event.keyCode > 105) {
+              event.preventDefault();
+            }
+          }
+        }
+      });
+
+    }
+
   }
 
   //función que realiza la busqueda
   jsBuscar() {
 
     //obtenemos el valor insertado a buscar
+
    
-    const buscar = $("#busqueda").prop("value")
+    if (String($("#busqueda").val()).length < 4) {
+      this.notifyService.showError("Ingrese mas de 4 caracteres para la búsqueda", "Longitud Máxima")
 
-    const nombre = <HTMLInputElement>document.getElementById("option-1");
-    var isCheckedname = nombre.checked;
-    if (isCheckedname) {
-      $("#busqueda").val('');
-      this.buscarpaciente.numCedula = buscar
-      this.buscarpaciente.nombre = null
-    } else {
-      $("#busqueda").val('');
-      this.buscarpaciente.nombre = buscar
-      this.buscarpaciente.numCedula = null
-    }
-
-    this.pacienteService.buscarPaciente(this.buscarpaciente).subscribe(
-      res => {
-        console.log(res)
-          ;
-        this.paciente = res;
+    }else{
+      const buscar = $("#busqueda").prop("value")
+      const nombre = <HTMLInputElement>document.getElementById("option-1");
+      var isCheckedname = nombre.checked;
+      if (isCheckedname) {
         $("#busqueda").val('');
-      },
-      err => console.log(err)
-      
-    )
-
+        this.buscarpaciente.numCedula = buscar
+        this.buscarpaciente.nombre = null
+      } else {
+        $("#busqueda").val('');
+        this.buscarpaciente.nombre = buscar
+        this.buscarpaciente.numCedula = null
+      }
+  
+      this.pacienteService.buscarPaciente(this.buscarpaciente).subscribe(
+        res => {
+          console.log(res)
+            ;
+          this.paciente = res;
+          $("#busqueda").val('');
+        },
+        err => console.log(err)
+  
+      )
+  
+    }
+ 
 
 
   }
 
   public odontograma = {
-    fechaOdonto:Date.now(),
-    paciente:""
+    fechaOdonto: Date.now(),
+    paciente: ""
 
   }
-  
+
   id_odontograma;
-  newOdo(id_pac){
-   
-        this.odontograma.paciente=id_pac
-    
-  
+  newOdo(id_pac) {
+
+    this.odontograma.paciente = id_pac
+
+
     this.odoService.crearOdontograma(this.odontograma).subscribe(
 
-      res2 => { console.log(res2)
-        this.id_odontograma=res2._id
-        this.router.navigate(['/menu/odontograma/'+this.id_odontograma])
-       }, err2 => console.log(err2)
+      res2 => {
+        console.log(res2)
+        this.id_odontograma = res2._id
+        this.router.navigate(['/menu/odontograma/' + this.id_odontograma])
+      }, err2 => console.log(err2)
     )
   }
 
-  newSeguimiento(){
+  newSeguimiento() {
     console.log(this.paciente)
-    let idpac=""
+    let idpac = ""
     this.paciente.pac.forEach(element => {
       console.log(element._id)
-        idpac=element._id
+      idpac = element._id
     });
-  
-    this.router.navigate(['/menu/seguimiento/'+idpac])
+
+    this.router.navigate(['/menu/seguimiento/' + idpac])
   }
 
-  newProcedimiento(){
-    let idpac=""
+  newProcedimiento() {
+    let idpac = ""
     this.paciente.pac.forEach(element => {
       console.log(element._id)
-        idpac=element._id
+      idpac = element._id
     });
-  
-    this.router.navigate(['/menu/procediminetos/'+idpac])
+
+    this.router.navigate(['/menu/procediminetos/' + idpac])
   }
 
 }

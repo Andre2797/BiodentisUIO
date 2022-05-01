@@ -107,14 +107,14 @@ async function cita() {
 
       const res = await (fetch(request));
       const citasinformato = await res.json();
-      
+
       console.log(moment(info.event.start).format('DD/MM/YYYY HH:mm'))
       console.log("RESERVA ID", citasinformato)
       idedit = citasinformato._id;
       document.getElementById('nombreedit').value = citasinformato.nombre;
       document.getElementById('apellidoedit').value = citasinformato.apellido;
       document.getElementById('titleedit').value = citasinformato.motivo;
-      document.getElementById('startedit').value = moment(info.event.start).add(5,'h').format('YYYY-MM-DDThh:mm')
+      document.getElementById('startedit').value = moment(info.event.start).add(5, 'h').format('YYYY-MM-DDThh:mm')
 
 
 
@@ -178,8 +178,9 @@ async function cita() {
         'Precione OK para continuar',
         'success'
       ).then(function () {
+
         location.reload();
-    })
+      })
 
     }
   });
@@ -206,30 +207,38 @@ async function cita() {
       bodyReserva.apellido = apellido;
       bodyReserva.fecha = start;
       bodyReserva.motivo = title;
+      Swal.fire({
+        title: 'Advertencia?',
+        text: "Esta seguro de editar!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'SI. Editar cita'
+      }).then((result) => {
+
+        var request = new Request('https://biodentis.herokuapp.com/messenger/cambioDatosReserva/' + idedit, {
+          method: 'PUT',
+
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(bodyReserva),
+        });
+        fetch(request).then(response => console.log(response))
+          ;
+        $("#modalEdit").modal('hide');
+        Swal.fire(
+          'Cita Modificada con exito',
+          'Precione OK para continuar',
+          'success'
+        ).then(function () {
+          location.reload();
+        })
+      })
 
 
-      var request = new Request('https://biodentis.herokuapp.com/messenger/cambioDatosReserva/' + idedit, {
-        method: 'PUT',
 
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(bodyReserva),
-      });
-      fetch(request).then(response => console.log(response))
-        ;
-      $("#modalEdit").modal('hide');
-      Swal.fire(
-        'Cita Modificada con exito',
-        'Precione OK para continuar',
-        'success'
-      ).then(function () {
-        location.reload();
-    })
-      
-      
-
-      
     }
   });
 
@@ -257,28 +266,28 @@ async function cita() {
         fetch(request).then(response => location.reload());
 
 
-        
-        
+
+
       }
-      
+
     })
-    
+
   });
   var selectsucu = document.getElementById('sucu');
-  var idSucu='';
-  var idOdo='';
+  var idSucu = '';
+  var idOdo = '';
   selectsucu.addEventListener('change',
     function () {
       var selectedOption = this.options[selectsucu.selectedIndex];
       console.log(selectedOption.value);
-      idSucu=selectedOption.value
+      idSucu = selectedOption.value
     });
-    var selectodo = document.getElementById('odo');
-    selectodo.addEventListener('change',
+  var selectodo = document.getElementById('odo');
+  selectodo.addEventListener('change',
     function () {
       var selectedOption = this.options[selectsucu.selectedIndex];
       console.log(selectedOption.value);
-      idOdo=selectedOption.value
+      idOdo = selectedOption.value
     });
   document.querySelector("#btnAsistir").addEventListener('click', function () {
     document.querySelector("#formularioedit").addEventListener('click', (e) => {
@@ -288,7 +297,7 @@ async function cita() {
       const nombre = document.getElementById('nombreedit').value;
       const apellido = document.getElementById('apellidoedit').value;
 
-      
+
       if (title == '' || start == '' || nombre == '' || apellido == '') {
         Swal.fire(
           'Avisos?',
@@ -305,8 +314,8 @@ async function cita() {
         bodyReserva.apellido = apellido;
         bodyReserva.fecha = start;
         bodyReserva.motivo = title;
-        bodyReserva.sucursal=idSucu;
-        bodyReserva.odontologo=idOdo;
+        bodyReserva.sucursal = idSucu;
+        bodyReserva.odontologo = idOdo;
 
         console.log(bodyReserva)
         var request = new Request('https://biodentis.herokuapp.com/messenger/crearCita', {
@@ -321,13 +330,13 @@ async function cita() {
           ;
         $("#modalEdit").modal('hide');
         $("#modalAsistir").modal('show');
-       
+
       }
     });
- 
+
 
   });
 };
-module.exports = {cita};
+module.exports = { cita };
 
 
