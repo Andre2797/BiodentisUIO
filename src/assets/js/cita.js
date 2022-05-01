@@ -111,12 +111,27 @@ async function cita() {
       console.log(moment(info.event.start).format('DD/MM/YYYY HH:mm'))
       console.log("RESERVA ID FACEBOOK", citasinformato)
       if (citasinformato == null) {
-        console.log(citasinformatoface)
-        /*  idedit = citasinformatoface._id;
-         document.getElementById('nombreedit').value = citasinformatoface.nombre;
-         document.getElementById('apellidoedit').value = citasinformatoface.apellido;
-         document.getElementById('titleedit').value = "Reserva Facebook"; */
-        console.log(citasinformatoface)
+        var request = new Request('https://biodentis.herokuapp.com/messenger/reservaEditFacebook/' + info.event.start, {
+          method: 'GET',
+
+          headers: {
+            'Content-Type': 'application/json'
+          }
+
+        });
+
+
+        const res = await (fetch(request));
+        const citasinformato = await res.json();
+        idedit = citasinformato._id;
+        document.getElementById('nombreedit').value = citasinformato.nombre;
+        document.getElementById('apellidoedit').value = citasinformato.apellido;
+        document.getElementById('titleedit').value = citasinformato.motivo;
+        document.getElementById('startedit').value = moment(info.event.start).add(5, 'h').format('YYYY-MM-DDThh:mm')
+        document.getElementById('btnAccionedit').textContent = 'MODIFICAR';
+        document.getElementById('tituloedit').textContent = 'Actualizar Reserva';
+        document.querySelector("#btnEliminaredit").classList.remove('d-none');
+        $("#modalEdit").modal('show');
       } else {
         idedit = citasinformato._id;
         document.getElementById('nombreedit').value = citasinformato.nombre;
