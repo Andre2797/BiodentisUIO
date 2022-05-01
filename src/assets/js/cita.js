@@ -112,12 +112,12 @@ async function cita() {
       console.log("RESERVA ID FACEBOOK", citasinformato)
       if (citasinformato == null) {
         console.log(citasinformatoface)
-       /*  idedit = citasinformatoface._id;
-        document.getElementById('nombreedit').value = citasinformatoface.nombre;
-        document.getElementById('apellidoedit').value = citasinformatoface.apellido;
-        document.getElementById('titleedit').value = "Reserva Facebook"; */
-
-      }else{
+        /*  idedit = citasinformatoface._id;
+         document.getElementById('nombreedit').value = citasinformatoface.nombre;
+         document.getElementById('apellidoedit').value = citasinformatoface.apellido;
+         document.getElementById('titleedit').value = "Reserva Facebook"; */
+        console.log(citasinformatoface)
+      } else {
         idedit = citasinformato._id;
         document.getElementById('nombreedit').value = citasinformato.nombre;
         document.getElementById('apellidoedit').value = citasinformato.apellido;
@@ -128,7 +128,7 @@ async function cita() {
         document.querySelector("#btnEliminaredit").classList.remove('d-none');
         $("#modalEdit").modal('show');
       }
-    
+
 
     },
     events: citasnew
