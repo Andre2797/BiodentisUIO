@@ -109,7 +109,7 @@ async function cita() {
       const citasinformato = await res.json();
 
       console.log(moment(info.event.start).format('DD/MM/YYYY HH:mm'))
-      console.log("RESERVA ID FACEBOOK", citasinformato)
+    
       if (citasinformato == null) {
         var request = new Request('https://biodentis.herokuapp.com/messenger/reservaEditFacebook/' + info.event.start, {
           method: 'GET',
@@ -123,6 +123,7 @@ async function cita() {
 
         const res = await (fetch(request));
         const citasinformato = await res.json();
+        console.log("RESERVA ID FACEBOOK", citasinformato)
         idedit = citasinformato._id;
         document.getElementById('nombreedit').value = citasinformato.nombre;
         document.getElementById('apellidoedit').value = citasinformato.apellido;
