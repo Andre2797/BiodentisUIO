@@ -109,7 +109,7 @@ async function cita() {
       const citasinformato = await res.json();
 
       console.log(moment(info.event.start).format('DD/MM/YYYY HH:mm'))
-      if (citasinformato._id == null) {
+      if (citasinformato._id === undefined || citasinformato._id === null) {
         idedit = "1"
       } else {
         idedit = citasinformato._id;
