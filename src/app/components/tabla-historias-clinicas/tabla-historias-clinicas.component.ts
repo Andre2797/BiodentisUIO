@@ -112,7 +112,7 @@ export class TablaHistoriasClinicasComponent implements OnInit {
     //obtenemos el valor insertado a buscar
 
    
-    if (String($("#busqueda").val()).length < 4) {
+    if (String($("#busqueda").val()).length < 4 && String($("#busqueda").val()).length >1) {
       this.notifyService.showError("Ingrese mas de 4 caracteres para la búsqueda", "Longitud Máxima")
 
     }else{
