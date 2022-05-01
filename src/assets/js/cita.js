@@ -109,17 +109,16 @@ async function cita() {
       const citasinformato = await res.json();
 
       console.log(moment(info.event.start).format('DD/MM/YYYY HH:mm'))
-      console.log("RESERVA ID", citasinformato)
-      idedit = citasinformato._id;
+      if (citasinformato._id == null) {
+        idedit = "1"
+      } else {
+        idedit = citasinformato._id;
+      }
+
       document.getElementById('nombreedit').value = citasinformato.nombre;
       document.getElementById('apellidoedit').value = citasinformato.apellido;
       document.getElementById('titleedit').value = citasinformato.motivo;
       document.getElementById('startedit').value = moment(info.event.start).add(5, 'h').format('YYYY-MM-DDThh:mm')
-
-
-
-
-
       document.getElementById('btnAccionedit').textContent = 'MODIFICAR';
       document.getElementById('tituloedit').textContent = 'Actualizar Reserva';
       document.querySelector("#btnEliminaredit").classList.remove('d-none');
