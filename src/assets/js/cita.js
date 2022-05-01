@@ -112,7 +112,7 @@ async function cita() {
     
       if (citasinformato == null) {
         console.log(moment(info.event.start).format())
-        var request2 = new Request('https://biodentis.herokuapp.com/messenger/reservaEditFacebook/' + moment(info.event.start).format(), {
+        var request2 = new Request('https://biodentis.herokuapp.com/messenger/reservaEditFacebook/' + moment(info.event.start).format("YYY-MM-DD")+"T12:00:00-04:00", {
           method: 'GET',
 
           headers: {
