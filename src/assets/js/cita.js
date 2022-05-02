@@ -125,6 +125,7 @@ async function cita() {
         const res2 = await (fetch(request2));
         const citasinformatoface = await res2.json();
         console.log("RESERVA ID FACEBOOK", citasinformatoface)
+        console.log("HORA",moment(info.event.start).format("YYYY-MM-DD")+"T"+citasinformatoface.hora)
         idedit = citasinformatoface._id;
         document.getElementById('nombreedit').value = citasinformatoface.nombre;
         document.getElementById('apellidoedit').value = citasinformatoface.apellido;
