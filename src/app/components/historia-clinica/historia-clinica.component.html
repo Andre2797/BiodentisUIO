@@ -198,7 +198,7 @@
         </form>
     </div>
 
-    <div  [hidden]="!edited">
+    <div [hidden]="!edited">
         <form class="custom-form" [formGroup]="pacienteForm">
             <div class="row" style="margin: auto; height: auto; margin-top: -20px;">
                 <div class="circle">
@@ -431,13 +431,13 @@
 
 
         <form class="custom-form" [formGroup]="historiaForm" [hidden]="!second">
-            <div class="row" style="margin: auto; height: 100%" >
+            <div class="row" style="margin: auto; height: 100%">
                 <div class="circle">
                     <p>Signos Vitales</p>
                 </div>
                 <div class="circleform_signos">
                     <br>
-                    <div class="input-group input-group-icon" >
+                    <div class="input-group input-group-icon">
                         <label class="label_form">PRESIÓN ARTERIAL</label>
                         <br>
                         <br>
@@ -469,7 +469,7 @@
             </div>
             <hr>
             <br>
-            <div class="row" style="margin: auto; height: 100%" >
+            <div class="row" style="margin: auto; height: 100%">
 
                 <div class="circle">
 
@@ -553,10 +553,13 @@
                     </div>
                 </div>
                 <hr>
-                <div class="row" style="margin: auto; height: 100%;">
-                    <button href="" class="boton_1" style="margin-right:100px; margin-top: 10px;"
-                        (click)="newHiatoria()">GUARDAR</button>
-                    <button href="" class="boton_1" style="margin-left:100px; margin-top: 10px;" (click)="goBack()">CANCELAR</button>
+                <div>
+                    <div class="row" style="margin: auto; height: 100%;">
+                        <button href="" class="boton_1" style="margin-right:100px; margin-top: 10px;"
+                            (click)="newHiatoria()">GUARDAR</button>
+                        <button href="" class="boton_1" style="margin-left:100px; margin-top: 10px;"
+                            (click)="goBack()">CANCELAR</button>
+                    </div>
                 </div>
             </div>
         </form>
