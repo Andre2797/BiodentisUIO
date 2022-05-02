@@ -56,10 +56,10 @@ export class ProcedimientosComponent implements OnInit {
 
                     this.procedimiento.nombre = diag.nome
                     this.procedimiento.numero = diag.numeroDente
-                    console.log("DIAGNOSTICO EN ODOYTOGEMA",diag)
+                    console.log("DIAGNOSTICO EN ODOYTOGEMA",element)
                     for (let j = 0; j < element.tratamientos.length; j++) {
                       const trata = element.tratamientos[i];
-                      console.log("TRATAMIENTO EN ODONTOGRMA",trata)
+                      console.log("TRATAMIENTO EN ODONTOGRMA",element)
                       if (trata == null) {
                         element.diagnostico[i] = null
                       } else {
