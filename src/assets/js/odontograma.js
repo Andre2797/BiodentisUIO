@@ -1013,7 +1013,7 @@ function odo ()  {
      * Cambia el tamaño del lienzo del pincel y su contenido proporcionalmente al tamaño de la ventana.
      */
     const resizeCanvasPincel = () => {
-        camadaPincel.width = window.innerWidth -15
+        camadaPincel.width = window.innerWidth + 15
         const altura = (camadaPincel.width * alturaTelaReferencia) / tamanhoTelaReferencia
         camadaPincel.height = altura
         const dataImage = localStorage.getItem('desenho')
@@ -1026,7 +1026,7 @@ function odo ()  {
     }
 
     const resizeCanvasPincel2 = () => {
-        camadaPincel.width = window.innerWidth - 15
+        camadaPincel.width = window.innerWidth + 15
         const altura = (camadaPincel.width * alturaTelaReferencia) / tamanhoTelaReferencia
         camadaPincel.height = altura
         const dataImage = localStorage.removeItem('procedimentos')
