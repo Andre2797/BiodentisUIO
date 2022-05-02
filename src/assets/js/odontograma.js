@@ -23,8 +23,8 @@ function odo ()  {
         margemYEntreDentes: 200
     }
 
-    const tamanhoTelaReferencia = 2000
-    const alturaTelaReferencia = 670
+    const tamanhoTelaReferencia = 1600
+    const alturaTelaReferencia = 500
   
   
 
