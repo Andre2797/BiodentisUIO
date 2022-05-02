@@ -33,11 +33,16 @@ export class ProcedimientosComponent implements OnInit {
 
     await this.pacienteService.paciente(this.firstParam)
       .subscribe(
-        res => {
+        async res => {
           console.log(res);
           this.paciente = res
-          console.log("ODONTOGRAMASSS",this.paciente.odontogramas)
-          this.paciente.odontogramas.forEach(async element => {
+          console.log("ODONTOGRAMASSS", this.paciente.odontogramas)
+
+
+
+          for (let index = 0; index < this.paciente.odontogramas.length; index++) {
+            const element = this.paciente.odontogramas[index];
+            console.log(element)
             await this.diagnosticoService.diagnotico(element._id).subscribe(
               res => {
                 console.log(res);
@@ -86,7 +91,7 @@ export class ProcedimientosComponent implements OnInit {
               },
               err => console.log(err)
             )
-          });
+          };
 
         },
         err => console.log(err)
