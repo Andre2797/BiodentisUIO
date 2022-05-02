@@ -12,9 +12,10 @@ export class ProcedimientosComponent implements OnInit {
 
   constructor(private pacienteService: PacienteService, private route: ActivatedRoute, private diagnosticoService: OdontogramaService) { }
   firstParam
-  paciente
+  paciente: any = []
   diagnostico = []
   general
+  odontogramas: any = []
   tratamiento
   procedimiento = {
     nombre: "",
@@ -38,69 +39,67 @@ export class ProcedimientosComponent implements OnInit {
           this.paciente = res
           console.log("ODONTOGRAMASSS", this.paciente.odontogramas)
 
+          for (let i = 0; i < this.paciente.odontogramas.length; i++) {
+            const element = this.paciente.odontogramas[i];
+            this.odontogramas.push(element._id)
 
+          }
 
-          for (let index = 0; index < this.paciente.odontogramas.length; index++) {
-            const element = this.paciente.odontogramas[index];
-            console.log(element)
-
+          for (let index = 0; index < this.odontogramas.length; index++) {
+            const element = this.paciente.odontogramas[index]
+            this.general = []
+            this.diagnostico = []
             await this.diagnosticoService.diagnotico(element._id).subscribe(
-              res => {
-                console.log(res);
+              async res => {
                 this.general = res
-                this.general.forEach(element => {
+                console.log("GENERALLL", this.general[index])
+                if (this.general[index] !== undefined) {
+                  console.log("entra",this.general)
+                  await this.general.forEach(element => {
+                    for (let i = 0; i < element.diagnostico.length; i++) {
+                      const diag = element.diagnostico[i];
+                      this.procedimiento.nombre = diag.nome
+                      this.procedimiento.numero = diag.numeroDente
+                      console.log("DIAGNOSTICO EN ODOYTOGEMA", diag)
+                      for (let j = 0; j <= element.tratamientos.length; j++) {
+                        const trata = element.tratamientos[i];
+                        console.log("TRATAMIENTO EN ODONTOGRMA", element)
+                        if (trata == null) {
+                          element.diagnostico[i] = null
+                        } else {
+                          this.procedimiento.descripcion = trata.descripcion
+                          this.procedimiento.costo = trata.costo
+                          this.procedimiento.sesion = trata.sesiones
+                        }
 
 
-                  for (let i = 0; i < element.diagnostico.length -1; i++) {
-                    const diag = element.diagnostico[i];
-
-                    this.procedimiento.nombre = diag.nome
-                    this.procedimiento.numero = diag.numeroDente
-                    console.log("DIAGNOSTICO EN ODOYTOGEMA",element)
-                    for (let j = 0; j < element.tratamientos.length; j++) {
-                      const trata = element.tratamientos[i];
-                      console.log("TRATAMIENTO EN ODONTOGRMA",element)
-                      if (trata == null) {
-                        element.diagnostico[i] = null
-                      } else {
-                        this.procedimiento.descripcion = trata.descripcion
-                        this.procedimiento.costo = trata.costo
-                        this.procedimiento.sesion = trata.sesiones
+                      }
+                      this.diagnostico.push(this.procedimiento)
+                      this.procedimiento = {
+                        nombre: "",
+                        numero: "",
+                        descripcion: "",
+                        costo: "",
+                        sesion: ""
                       }
 
 
                     }
-                    console.log(this.procedimiento)
-
-                    this.diagnostico.push(this.procedimiento)
-                    this.procedimiento = {
-                      nombre: "",
-                      numero: "",
-                      descripcion: "",
-                      costo: "",
-                      sesion: ""
-                    }
-
-
-                  }
-
-
-
-
-                  console.log(this.diagnostico)
-
-
-                });
-                
+                  });
+                } else {
+                  this.paciente.odontogramas.length = this.paciente.odontogramas.length - 1
+                }
               },
+
               err => console.log(err)
             )
-            this.general = {}
-          };
 
+          };
         },
         err => console.log(err)
+
       )
+
 
   }
 
