@@ -43,6 +43,7 @@ export class ProcedimientosComponent implements OnInit {
           for (let index = 0; index < this.paciente.odontogramas.length; index++) {
             const element = this.paciente.odontogramas[index];
             console.log(element)
+
             await this.diagnosticoService.diagnotico(element._id).subscribe(
               res => {
                 console.log(res);
@@ -88,6 +89,7 @@ export class ProcedimientosComponent implements OnInit {
 
 
                 });
+                this.general = {}
               },
               err => console.log(err)
             )
