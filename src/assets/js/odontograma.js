@@ -24,7 +24,7 @@ function odo ()  {
     }
 
     const tamanhoTelaReferencia = 2000
-    const alturaTelaReferencia = 570
+    const alturaTelaReferencia = 670
   
   
 

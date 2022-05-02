@@ -89,10 +89,11 @@ export class ProcedimientosComponent implements OnInit {
 
 
                 });
-                this.general = {}
+                
               },
               err => console.log(err)
             )
+            this.general = {}
           };
 
         },
