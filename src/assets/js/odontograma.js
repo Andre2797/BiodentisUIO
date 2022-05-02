@@ -23,8 +23,8 @@ function odo ()  {
         margemYEntreDentes: 200
     }
 
-    const tamanhoTelaReferencia = 1600
-    const alturaTelaReferencia = 600
+    const tamanhoTelaReferencia = 1895
+    const alturaTelaReferencia = 800
   
   
 
@@ -1013,7 +1013,7 @@ function odo ()  {
      * Cambia el tamaño del lienzo del pincel y su contenido proporcionalmente al tamaño de la ventana.
      */
     const resizeCanvasPincel = () => {
-        camadaPincel.width = window.innerWidth + 5
+        camadaPincel.width = window.innerWidth -25
         const altura = (camadaPincel.width * alturaTelaReferencia) / tamanhoTelaReferencia
         camadaPincel.height = altura
         const dataImage = localStorage.getItem('desenho')
@@ -1026,7 +1026,7 @@ function odo ()  {
     }
 
     const resizeCanvasPincel2 = () => {
-        camadaPincel.width = window.innerWidth + 5
+        camadaPincel.width = window.innerWidth - 25
         const altura = (camadaPincel.width * alturaTelaReferencia) / tamanhoTelaReferencia
         camadaPincel.height = altura
         const dataImage = localStorage.removeItem('procedimentos')

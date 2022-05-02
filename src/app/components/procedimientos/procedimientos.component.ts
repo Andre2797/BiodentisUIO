@@ -51,7 +51,7 @@ export class ProcedimientosComponent implements OnInit {
                 this.general.forEach(element => {
 
 
-                  for (let i = 0; i < element.diagnostico.length; i++) {
+                  for (let i = 0; i < element.diagnostico.length -1; i++) {
                     const diag = element.diagnostico[i];
 
                     this.procedimiento.nombre = diag.nome
