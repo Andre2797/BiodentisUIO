@@ -125,11 +125,11 @@ async function cita() {
         const res2 = await (fetch(request2));
         const citasinformatoface = await res2.json();
         console.log("RESERVA ID FACEBOOK", citasinformatoface)
-        idedit = citasinformato._id;
+        idedit = citasinformatoface._id;
         document.getElementById('nombreedit').value = citasinformatoface.nombre;
         document.getElementById('apellidoedit').value = citasinformatoface.apellido;
         document.getElementById('titleedit').value = citasinformatoface.motivo;
-        document.getElementById('startedit').value = moment(info.event.start).add(5, 'h').format('YYYY-MM-DDThh:mm')
+        document.getElementById('startedit').value = moment(info.event.start).format("YYYY-MM-DD")+"T"+citasinformatoface
         document.getElementById('btnAccionedit').textContent = 'MODIFICAR';
         document.getElementById('tituloedit').textContent = 'Actualizar Reserva';
         document.querySelector("#btnEliminaredit").classList.remove('d-none');
