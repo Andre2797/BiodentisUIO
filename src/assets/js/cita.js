@@ -128,8 +128,8 @@ async function cita() {
         idedit = citasinformatoface._id;
         document.getElementById('nombreedit').value = citasinformatoface.nombre;
         document.getElementById('apellidoedit').value = citasinformatoface.apellido;
-        document.getElementById('titleedit').value = citasinformatoface.motivo;
-        document.getElementById('startedit').value = moment(info.event.start).format("YYYY-MM-DD")+"T"+citasinformatoface
+        document.getElementById('titleedit').value = "Reserva Facebook"
+        document.getElementById('startedit').value = moment(info.event.start).format("YYYY-MM-DD")+"T"+citasinformatoface.hora
         document.getElementById('btnAccionedit').textContent = 'MODIFICAR';
         document.getElementById('tituloedit').textContent = 'Actualizar Reserva';
         document.querySelector("#btnEliminaredit").classList.remove('d-none');
