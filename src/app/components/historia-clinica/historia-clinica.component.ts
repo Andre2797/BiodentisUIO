@@ -67,7 +67,7 @@ export class HistoriaClinicaComponent implements OnInit {
   public sexoHEdit;
   constructor(private pacienteService: PacienteService, private odoService: OdontogramaService, private trataService: TratamientoService
     , private router: Router, private formBuilder: FormBuilder, private notifyService: NotificationService,
-    private route: ActivatedRoute,private _location: Location) {
+    private route: ActivatedRoute, private _location: Location) {
     console.log(this.route.snapshot.params.id);
 
     if (this.route.snapshot.params.id) {
@@ -77,7 +77,7 @@ export class HistoriaClinicaComponent implements OnInit {
             console.log(res);
             this.pacienteSave = res;
             this.edited = false;
-           
+
             if (this.pacienteSave.sexo == "F") {
               this.sexoFEdit = "F";
               this.sexoHEdit = "";
@@ -223,7 +223,7 @@ export class HistoriaClinicaComponent implements OnInit {
   id_odontograma;
 
   newHiatoria() {
-    
+
     if (this.historiaForm.valid) {
       this.historiaForm.controls['paciente'].setValue(this.id_paciente);
 
@@ -273,31 +273,19 @@ export class HistoriaClinicaComponent implements OnInit {
       this.pacienteForm.controls['correo'].setValue(this.pacienteSave.correo);
     }
 
-    console.log(this.pacienteForm.valid);
-    if (this.pacienteForm.valid) {
+    this.pacienteService.actualizarPaciente(this.pacienteForm.value, this.route.snapshot.params.id)
+      .subscribe(
+        res => {
+          console.log(res)
+          this.notifyService.showSuccess("Datos del paciente actulizados exitosamente", "Actualización de campos")
+          this.router.navigate(['/menu/tabla-Historias-Clinicas'])
 
-      this.pacienteService.actualizarPaciente(this.pacienteForm.value, this.route.snapshot.params.id)
-        .subscribe(
-          res => {
-            console.log(res)
-            this.notifyService.showSuccess("Datos del paciente actulizados exitosamente", "Actualización de campos")
-            this.router.navigate(['/menu/tabla-Historias-Clinicas'])
-
-
-
-
-          },
-          err => console.log(err)
-        )
-    } else {
-      this.notifyService.showError("Campos requeridos se encuentran vacios", "Campos requeridos")
-
-
-    }
-
+        },
+        err => console.log(err)
+      )
 
   }
-  goBack(){
+  goBack() {
     this.router.navigate(['/menu/home']);
   }
 
