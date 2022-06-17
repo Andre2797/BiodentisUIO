@@ -112,7 +112,7 @@ async function cita() {
     
       if (citasinformato == null) {
         console.log("PARAMENTROS FACEBOOK "+moment(info.event.start).format("YYYY-MM-DD")+"T12:00:00-04:00")
-        var request2 = new Request('https://biodentis.herokuapp.com/messenger/reservaEditFacebook/' + moment(info.event.start).format("YYYY-MM-DD")+"T12:00:00-04:00", {
+        var request2 = new Request('https://biodentis.herokuapp.com/messenger/reservaEditFacebook/' + moment(info.event.start).format("YYYY-MM-DD")+"T12:00:00-04:00/"+moment(info.event.start).format('HH:mm:ss'), {
           method: 'GET',
 
           headers: {
