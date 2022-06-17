@@ -124,7 +124,9 @@ async function cita() {
 
         const res2 = await (fetch(request2));
         const citasArrayresponse=await res2.json();
+        console.log("ARRAY FACEBOOK",citasArrayresponse)
         const dataFilter=citasArrayresponse.filter(x=>x.hora===moment(info.event.start).format('HH:mm:ss')) 
+        console.log("DATA FACEBOOK",dataFilter)
         const citasinformatoface = dataFilter[0]
 
         console.log("RESERVA ID FACEBOOK", citasinformatoface)
