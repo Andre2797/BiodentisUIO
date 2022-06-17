@@ -112,7 +112,7 @@ async function cita() {
     
       if (citasinformato == null) {
         console.log("PARAMENTROS FACEBOOK" + moment(info.event.start).format("YYYY-MM-DD")+"T12:00:00-04:00/"+moment(info.event.start).format('HH:mm:ss'))
-        var request2 = new Request('https://biodentis.herokuapp.com/messenger/reservaEditFacebook/' + moment(info.event.start).format("YYYY-MM-DD")+"T12:00:00-04:00/"+moment(info.event.start).format('HH:mm:ss'), {
+        var request2 = new Request('https://biodentis.herokuapp.com/messenger/reservaEditFacebook/' + moment(info.event.start).format("YYYY-MM-DD")+"T12:00:00-04:00", {
           method: 'GET',
 
           headers: {
@@ -123,9 +123,13 @@ async function cita() {
 
 
         const res2 = await (fetch(request2));
-        const citasinformatoface = await res2.json();
+        const citasArrayresponse=await res2.json();
+        const dataFilter=citasArrayresponse.filter(x=>x.hora===moment(info.event.start).format('HH:mm:ss')) 
+        const citasinformatoface = dataFilter[0]
+
         console.log("RESERVA ID FACEBOOK", citasinformatoface)
         console.log("HORA",moment(info.event.start).format("YYYY-MM-DD")+"T"+citasinformatoface.hora)
+
         idedit = citasinformatoface._id;
         document.getElementById('nombreedit').value = citasinformatoface.nombre;
         document.getElementById('apellidoedit').value = citasinformatoface.apellido;
