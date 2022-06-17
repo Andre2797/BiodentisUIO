@@ -128,7 +128,6 @@ async function cita() {
         const dataFilter=citasArrayresponse.filter(x=>x.hora===moment(info.event.start).add(5, 'h').format('HH:mm:ss')) 
         console.log("DATA FACEBOOK",dataFilter)
         const citasinformatoface = dataFilter[0]
-
         console.log("RESERVA ID FACEBOOK", citasinformatoface)
         console.log("HORA",moment(info.event.start).format("YYYY-MM-DD")+"T"+citasinformatoface.hora)
 
