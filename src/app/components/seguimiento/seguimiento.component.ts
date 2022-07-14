@@ -330,7 +330,7 @@ export class SeguimientoComponent implements OnInit {
           this.seguimientoService.actualizarTratamiento(element, element._id).subscribe(
             res => {
               console.log(res)
-              this.notifyService.showSuccess("Datos del segumiento actulizados exitosamente", "Actualización de campos")
+              this.notifyService.showSuccess("Datos del segumiento actualizados exitosamente", "Actualización de campos")
               this.router.navigate(['/menu/tabla-Historias-Clinicas'])
             },
             err => console.log(err)

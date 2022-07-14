@@ -277,7 +277,7 @@ export class HistoriaClinicaComponent implements OnInit {
       .subscribe(
         res => {
           console.log(res)
-          this.notifyService.showSuccess("Datos del paciente actulizados exitosamente", "Actualización de campos")
+          this.notifyService.showSuccess("Datos del paciente actualizados exitosamente", "Actualización de campos")
           this.router.navigate(['/menu/tabla-Historias-Clinicas'])
 
         },
