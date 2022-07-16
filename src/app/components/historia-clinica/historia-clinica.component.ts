@@ -293,6 +293,7 @@ export class HistoriaClinicaComponent implements OnInit {
     console.log("ENTRAAAAA")
     let cedulaCorrecta = false;
     let cedula=this.pacienteSave.numCedula
+    console.log(cedula)
     if (cedula.length == 10)
     {    
         let tercerDigito = parseInt(cedula.substring(2, 3));
