@@ -289,9 +289,10 @@ export class HistoriaClinicaComponent implements OnInit {
     this.router.navigate(['/menu/home']);
   }
   public validador; 
-  validadorDeCedula(cedula: String) {
+  validadorDeCedula() {
     console.log("ENTRAAAAA")
     let cedulaCorrecta = false;
+    let cedula=this.pacienteSave.numCedula
     if (cedula.length == 10)
     {    
         let tercerDigito = parseInt(cedula.substring(2, 3));
