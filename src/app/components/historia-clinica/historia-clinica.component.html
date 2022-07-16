@@ -251,8 +251,8 @@
                         <br>
                         <br>
                         <input class="input_form form-control" type="text" formControlName="numCedula" name="numCedula"
-                            required  (ngModelChange)="validadorDeCedula()" maxlength="10" />
-                            <p>{{validador}}</p>
+                            required  (ngModelChange)="validadorDeCedula()" maxlength="10" id="cedula"/>
+                           
                         <div
         
                             *ngIf="pacienteForm.controls['numCedula'].touched && pacienteForm.controls['numCedula'].invalid">

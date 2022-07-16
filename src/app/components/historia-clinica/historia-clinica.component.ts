@@ -292,7 +292,7 @@ export class HistoriaClinicaComponent implements OnInit {
   validadorDeCedula() {
     console.log("ENTRAAAAA")
     let cedulaCorrecta = false;
-    let cedula=this.pacienteSave.numCedula
+    let cedula=(<HTMLInputElement>document.getElementById('cedula')).value
     console.log(cedula)
     if (cedula.length == 10)
     {    
