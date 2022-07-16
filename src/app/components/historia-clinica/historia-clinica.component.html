@@ -250,8 +250,8 @@
                         <label class="label_form">NÚMERO DE CEDULA</label>
                         <br>
                         <br>
-                        <input class="input_form form-control" type="text" formControlName="numCedula" name="numCedula"
-                            required />
+                        <input class="input_form form-control" type="text" formControlName="numCedula" name="numCedula"   [(ngModel)]="numCedula"
+                            required  (ngModelChange)="validadorDeCedula(numCedula)" maxlength="10" />
                         <div
                             *ngIf="pacienteForm.controls['numCedula'].touched && pacienteForm.controls['numCedula'].invalid">
                             <small style="font-weight: bold; font-family: monospace; color: red;"
@@ -262,6 +262,7 @@
                                 *ngIf="pacienteForm.controls['numCedula'].errors?.['maxlength']">
                                 ***** (Debe tener como máximo 10 caracteres) ****
                             </small>
+                            <small *ngIf="!validador" class="text-danger">***** Cedula Invalida *****</small>
                         </div>
                         <br>
                         <br>
