@@ -325,6 +325,7 @@ export class HistoriaClinicaComponent implements OnInit {
     } else {
         cedulaCorrecta = false;
     }
+    console.log("validadorrrrr",this.validador)
   this.validador= cedulaCorrecta;
   
   }
