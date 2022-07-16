@@ -292,6 +292,7 @@ export class HistoriaClinicaComponent implements OnInit {
   validadorDeCedula() {
 
     var cad: any = String((<HTMLInputElement>document.getElementById('cedula')).value.trim());
+    console.log("cedula",cad)
     var total = 0;
     var longitud = cad.length;
     var longcheck = longitud - 1;
