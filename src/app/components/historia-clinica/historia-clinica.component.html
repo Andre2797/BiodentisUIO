@@ -251,10 +251,12 @@
                         <br>
                         <br>
                         <input class="input_form form-control" type="text" formControlName="numCedula" name="numCedula"
-                            required  (ngModelChange)="validadorDeCedula()" maxlength="10" id="cedula"/>
-                           
+                            required (ngModelChange)="validadorDeCedula()" maxlength="10" id="cedula" />
+                        <small style="font-weight: bold; font-family: monospace; color: red;" *ngIf="validador"
+                            class="text-danger">
+                            ***** Cedula Invalida *****
+                        </small>
                         <div
-        
                             *ngIf="pacienteForm.controls['numCedula'].touched && pacienteForm.controls['numCedula'].invalid">
                             <small style="font-weight: bold; font-family: monospace; color: red;"
                                 *ngIf="pacienteForm.controls['numCedula'].errors?.required">
@@ -264,10 +266,8 @@
                                 *ngIf="pacienteForm.controls['numCedula'].errors?.['maxlength']">
                                 ***** (Debe tener como máximo 10 caracteres) ****
                             </small>
-                            <small style="font-weight: bold; font-family: monospace; color: red;"  *ngIf="validador" class="text-danger">
-                                ***** Cedula Invalida *****
-                            </small>
-                           
+
+
                         </div>
                         <br>
                         <br>
@@ -559,14 +559,13 @@
                     </div>
                 </div>
                 <hr>
-              
-                    <div class="form-group" style="margin-left: 5%;">
-                        <button href="" class="boton_1" style="margin-right:100px; margin-top: 10px;"
-                            (click)="newHiatoria()">GUARDAR</button>
-                        <button href="" class="boton_1"
-                            (click)="goBack()">CANCELAR</button>
-                    </div>
-               
+
+                <div class="form-group" style="margin-left: 5%;">
+                    <button href="" class="boton_1" style="margin-right:100px; margin-top: 10px;"
+                        (click)="newHiatoria()">GUARDAR</button>
+                    <button href="" class="boton_1" (click)="goBack()">CANCELAR</button>
+                </div>
+
             </div>
         </form>
     </div>
