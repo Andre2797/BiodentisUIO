@@ -84,7 +84,7 @@ async function cita() {
 
       console.log(citasinformato)
       // leemos las fechas de inicio de evento y hoy
-      var check = moment(start).format('YYYY-MM-DD');
+      var check = moment(document.getElementById('start').value ).format('YYYY-MM-DD');
       var today = moment(new Date()).format('YYYY-MM-DD');
       console.log("CHECK", check)
       console.log("today", today)
