@@ -3,8 +3,7 @@ let eliminar = document.getElementById('btnEliminar');
 let idedit = "";
 let citasnew;
 let citafacenew;
-let start = document.getElementById('startedit');
-start.min = (new Date()).toISOString().substr(0, 19);
+
 async function cita() {
 
   var request = new Request('https://biodentis.herokuapp.com/messenger/reservas', {
