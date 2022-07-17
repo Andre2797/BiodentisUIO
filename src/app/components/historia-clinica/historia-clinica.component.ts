@@ -288,7 +288,7 @@ export class HistoriaClinicaComponent implements OnInit {
   goBack() {
     this.router.navigate(['/menu/home']);
   }
-  public validador;
+  public validador=false;
   validadorDeCedula() {
 
     var cad: any = String((<HTMLInputElement>document.getElementById('cedula')).value.trim());
