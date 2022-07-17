@@ -65,6 +65,7 @@ export class HistoriaClinicaComponent implements OnInit {
   public pacienteSave: any = [];
   public sexoFEdit;
   public sexoHEdit;
+  public validador=false;
   constructor(private pacienteService: PacienteService, private odoService: OdontogramaService, private trataService: TratamientoService
     , private router: Router, private formBuilder: FormBuilder, private notifyService: NotificationService,
     private route: ActivatedRoute, private _location: Location) {
@@ -288,7 +289,7 @@ export class HistoriaClinicaComponent implements OnInit {
   goBack() {
     this.router.navigate(['/menu/home']);
   }
-  public validador=false;
+
   validadorDeCedula() {
 
     var cad: any = String((<HTMLInputElement>document.getElementById('cedula')).value.trim());
