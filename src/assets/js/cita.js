@@ -86,7 +86,8 @@ async function cita() {
       // leemos las fechas de inicio de evento y hoy
       var check = moment(start).format('YYYY-MM-DD');
       var today = moment(new Date()).format('YYYY-MM-DD');
-
+      console.log("CHECK", check)
+      console.log("today", today)
       // si el inicio de evento ocurre hoy o en el futuro mostramos el modal
       if (check >= today) {
         document.getElementById('start').value = info.dateStr;
