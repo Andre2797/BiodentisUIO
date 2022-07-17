@@ -32,12 +32,12 @@ public minDate
     }, 5000);
     
     cita()
-
+    this.minDate=moment(new Date()).format('YYYY-MM-DD, h:mm a')
+    console.log("MINN",this.minDate)
 
   }
   constructor(private citaService: CitaService,private spinner: NgxSpinnerService) {
-    this.minDate=moment(new Date()).format('YYYY-MM-DD, h:mm a')
-    console.log("MINN",this.minDate)
+   
   }
 
   
