@@ -21,7 +21,7 @@ export class CitaComponent implements OnInit {
 
 public minDate
   ngOnInit(): void {
-    this.minDate=moment(new Date()).format('YYYY-MM-DD, h:mm a')
+    
     this.listarSucursal()
     this.listarOdontologo()
     this.spinner.show();
@@ -36,7 +36,8 @@ public minDate
 
   }
   constructor(private citaService: CitaService,private spinner: NgxSpinnerService) {
-   
+    this.minDate=moment(new Date()).format('YYYY-MM-DD, h:mm a')
+    console.log("MINN",this.minDate)
   }
 
   
