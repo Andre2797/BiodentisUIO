@@ -99,7 +99,13 @@ async function cita() {
       }
       // si no, mostramos una alerta de error
       else {
-        alert("No se pueden crear eventos en el pasado!");
+      
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'No se pueden crear eventos en el pasado!'
+        
+        })
       }
 
     },
