@@ -5,7 +5,7 @@ let citasnew;
 let citafacenew;
 
 async function cita() {
- 
+
   var request = new Request('https://biodentis.herokuapp.com/messenger/reservas', {
     method: 'GET',
     headers: {
@@ -184,51 +184,63 @@ async function cita() {
     const nombre = document.getElementById('nombre').value;
     console.log("NOMBRE EDIT", nombre)
     const apellido = document.getElementById('apellido').value;
-    if (title == '' || start == '' || nombre == '' || apellido == '') {
-      Swal.fire(
-        'Avisos?',
-        'Todo los campos son obligatorios',
-        'warning'
-      )
-    } else {
+    var selectHour = moment(start).format('hh')
+    var todayHour = moment(new Date()).format('hh')
+    if (selectHour < todayHour) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'No se pueden crear eventos en el pasado!'
 
-      let bodyReserva = {
+      })
+    } else {
+      if (title == '' || start == '' || nombre == '' || apellido == '') {
+        Swal.fire(
+          'Avisos?',
+          'Todo los campos son obligatorios',
+          'warning'
+        )
+      } else {
+
+        let bodyReserva = {
+
+        }
+        console.log("FECHA LOCALIZADA", moment(start.toLocaleString('ln', {
+          timeZone: 'America/New_York'
+        })).format('YYYY-MM-DD HH:mm'))
+        bodyReserva.nombre = nombre;
+        bodyReserva.apellido = apellido;
+        bodyReserva.fecha = start.toLocaleString('ln', {
+          timeZone: 'America/New_York'
+        });
+        bodyReserva.motivo = title;
+        console.log("BODY FECHA", bodyReserva.fecha)
+
+        var request = new Request('https://biodentis.herokuapp.com/messenger/crearReserva', {
+          method: 'POST',
+
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(bodyReserva),
+        });
+        fetch(request).then(response => console.log(response))
+          ;
+
+        console.log(JSON.stringify(bodyReserva))
+        $("#modalAbandonedCart").modal('hide');
+        Swal.fire(
+          'Cita Creada con exito',
+          'Precione OK para continuar',
+          'success'
+        ).then(function () {
+
+          location.reload();
+        })
 
       }
-      console.log("FECHA LOCALIZADA", moment(start.toLocaleString('ln', {
-        timeZone: 'America/New_York'
-      })).format('YYYY-MM-DD HH:mm'))
-      bodyReserva.nombre = nombre;
-      bodyReserva.apellido = apellido;
-      bodyReserva.fecha = start.toLocaleString('ln', {
-        timeZone: 'America/New_York'
-      });
-      bodyReserva.motivo = title;
-      console.log("BODY FECHA", bodyReserva.fecha)
-
-      var request = new Request('https://biodentis.herokuapp.com/messenger/crearReserva', {
-        method: 'POST',
-
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(bodyReserva),
-      });
-      fetch(request).then(response => console.log(response))
-        ;
-
-      console.log(JSON.stringify(bodyReserva))
-      $("#modalAbandonedCart").modal('hide');
-      Swal.fire(
-        'Cita Creada con exito',
-        'Precione OK para continuar',
-        'success'
-      ).then(function () {
-
-        location.reload();
-      })
-
     }
+
   });
 
   document.querySelector("#formularioedit").addEventListener('submit', (e) => {
