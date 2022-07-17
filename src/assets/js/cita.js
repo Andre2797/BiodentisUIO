@@ -5,8 +5,7 @@ let citasnew;
 let citafacenew;
 
 async function cita() {
-  var today=  moment(new Date()).format('YYYY-MM-DD, h:mm a');
-  document.getElementById('start').attr("min", today);
+ 
   var request = new Request('https://biodentis.herokuapp.com/messenger/reservas', {
     method: 'GET',
     headers: {
