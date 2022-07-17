@@ -29,6 +29,7 @@ export class CitaComponent implements OnInit {
        
         this.spinner.hide();
     }, 5000);
+    
     cita()
 
 

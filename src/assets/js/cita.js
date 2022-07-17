@@ -3,7 +3,8 @@ let eliminar = document.getElementById('btnEliminar');
 let idedit = "";
 let citasnew;
 let citafacenew;
-
+let start = document.getElementById('startedit');
+start.min = (new Date()).toISOString().substr(0, 19);
 async function cita() {
 
   var request = new Request('https://biodentis.herokuapp.com/messenger/reservas', {
@@ -77,18 +78,29 @@ async function cita() {
     navLinks: true, // can click day/week names to navigate views
     editable: true,
     eventLimit: true, // allow "more" link when too many events
+
     dateClick: function (info) {
       /* frm.reset(); */
       /* eliminar.classList.add('d-none'); */
 
       console.log(citasinformato)
-      document.getElementById('start').value = info.dateStr;
-      document.getElementById('nombre').value;
-      document.getElementById('apellido').value;
-      document.getElementById('btnAccion').textContent = 'RESERVAR';
-      document.getElementById('titulo').textContent = 'Registrar Cita';
-      $("#modalAbandonedCart").modal('show');
+      // leemos las fechas de inicio de evento y hoy
+      var check = moment(start).format('YYYY-MM-DD');
+      var today = moment(new Date()).format('YYYY-MM-DD');
 
+      // si el inicio de evento ocurre hoy o en el futuro mostramos el modal
+      if (check >= today) {
+        document.getElementById('start').value = info.dateStr;
+        document.getElementById('nombre').value;
+        document.getElementById('apellido').value;
+        document.getElementById('btnAccion').textContent = 'RESERVAR';
+        document.getElementById('titulo').textContent = 'Registrar Cita';
+        $("#modalAbandonedCart").modal('show');
+      }
+      // si no, mostramos una alerta de error
+      else {
+        alert("No se pueden crear eventos en el pasado!");
+      }
 
     },
 
@@ -109,10 +121,10 @@ async function cita() {
       const citasinformato = await res.json();
 
       console.log(moment(info.event.start).format('DD/MM/YYYY HH:mm'))
-    
+
       if (citasinformato == null) {
-        console.log("PARAMENTROS FACEBOOK" + moment(info.event.start).format("YYYY-MM-DD")+"T12:00:00-04:00/"+moment(info.event.start).format('HH:mm:ss'))
-        var request2 = new Request('https://biodentis.herokuapp.com/messenger/reservaEditFacebook/' + moment(info.event.start).format("YYYY-MM-DD")+"T12:00:00-04:00", {
+        console.log("PARAMENTROS FACEBOOK" + moment(info.event.start).format("YYYY-MM-DD") + "T12:00:00-04:00/" + moment(info.event.start).format('HH:mm:ss'))
+        var request2 = new Request('https://biodentis.herokuapp.com/messenger/reservaEditFacebook/' + moment(info.event.start).format("YYYY-MM-DD") + "T12:00:00-04:00", {
           method: 'GET',
 
           headers: {
@@ -123,19 +135,19 @@ async function cita() {
 
 
         const res2 = await (fetch(request2));
-        const citasArrayresponse=await res2.json();
-        console.log("ARRAY FACEBOOK",citasArrayresponse)
-        const dataFilter=citasArrayresponse.filter(x=>x.hora===moment(info.event.start).add(5, 'h').format('HH:mm:ss')) 
-        console.log("DATA FACEBOOK",dataFilter)
+        const citasArrayresponse = await res2.json();
+        console.log("ARRAY FACEBOOK", citasArrayresponse)
+        const dataFilter = citasArrayresponse.filter(x => x.hora === moment(info.event.start).add(5, 'h').format('HH:mm:ss'))
+        console.log("DATA FACEBOOK", dataFilter)
         const citasinformatoface = dataFilter[0]
         console.log("RESERVA ID FACEBOOK", citasinformatoface)
-        console.log("HORA",moment(info.event.start).format("YYYY-MM-DD")+"T"+citasinformatoface.hora)
+        console.log("HORA", moment(info.event.start).format("YYYY-MM-DD") + "T" + citasinformatoface.hora)
 
         idedit = citasinformatoface._id;
         document.getElementById('nombreedit').value = citasinformatoface.nombre;
         document.getElementById('apellidoedit').value = citasinformatoface.apellido;
         document.getElementById('titleedit').value = "Reserva Facebook"
-        document.getElementById('startedit').value = moment(info.event.start).format("YYYY-MM-DD")+"T"+citasinformatoface.hora
+        document.getElementById('startedit').value = moment(info.event.start).format("YYYY-MM-DD") + "T" + citasinformatoface.hora
         document.getElementById('btnAccionedit').textContent = 'MODIFICAR';
         document.getElementById('tituloedit').textContent = 'Actualizar Reserva';
         document.querySelector("#btnEliminaredit").classList.remove('d-none');

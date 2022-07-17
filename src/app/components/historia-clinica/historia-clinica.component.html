@@ -252,6 +252,8 @@
                         <br>
                         <input class="input_form form-control" type="text" formControlName="numCedula" name="numCedula"
                             required (ngModelChange)="validadorDeCedula()" maxlength="10" id="cedula" />
+                        <br>
+                        <br>
                         <small style="font-weight: bold; font-family: monospace; color: red;" *ngIf="validador"
                             class="text-danger">
                             ***** Cedula Invalida *****
