@@ -32,7 +32,7 @@ public minDate
     }, 5000);
     
     cita()
-    this.minDate=moment(new Date()).format('yyyy-mm-ddThh:mm')
+    this.minDate=moment(new Date()).format('YYYY-MM-DDThh:mm')
     console.log("MINN",this.minDate)
 
   }
