@@ -264,7 +264,9 @@
                                 *ngIf="pacienteForm.controls['numCedula'].errors?.['maxlength']">
                                 ***** (Debe tener como máximo 10 caracteres) ****
                             </small>
-                            <small style="font-weight: bold; font-family: monospace; color: red;" *ngIf="{{validador}}" class="text-danger">***** Cedula Invalida *****</small>
+                            <small style="font-weight: bold; font-family: monospace; color: red;" *ngIf="{{validador}}" class="text-danger">
+                                ***** Cedula Invalida *****
+                            </small>
                         </div>
                         <br>
                         <br>
