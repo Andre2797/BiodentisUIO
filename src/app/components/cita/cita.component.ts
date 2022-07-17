@@ -10,6 +10,7 @@ import { Calendar } from '@fullcalendar/core';
 import { CitaService } from '../../services/cita.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import {cita} from '../../../assets/js/cita.js'
+import moment from 'moment';
 @Component({
   selector: 'app-cita',
   templateUrl: './cita.component.html',
@@ -18,9 +19,9 @@ import {cita} from '../../../assets/js/cita.js'
 export class CitaComponent implements OnInit {
 
 
-
+public minDate
   ngOnInit(): void {
-    
+    this.minDate=moment(new Date()).format('YYYY-MM-DD, h:mm a')
     this.listarSucursal()
     this.listarOdontologo()
     this.spinner.show();
