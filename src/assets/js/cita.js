@@ -185,8 +185,10 @@ async function cita() {
     console.log("NOMBRE EDIT", nombre)
     const apellido = document.getElementById('apellido').value;
     var selectHour = moment(start).format('hh')
+    var selectDay = moment(start).format('YYYY-MM-DD')
+    var today=moment(new Date()).format('YYYY-MM-DD')
     var todayHour = moment(new Date()).format('hh')
-    if (selectHour < todayHour) {
+    if (selectDay == today && selectHour < todayHour) {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
