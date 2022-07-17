@@ -5,7 +5,8 @@ let citasnew;
 let citafacenew;
 
 async function cita() {
-
+  var today=  moment(new Date()).format('YYYY-MM-DD, h:mm a');
+  document.getElementById('start').attr("min", today);
   var request = new Request('https://biodentis.herokuapp.com/messenger/reservas', {
     method: 'GET',
     headers: {
@@ -99,12 +100,12 @@ async function cita() {
       }
       // si no, mostramos una alerta de error
       else {
-      
+
         Swal.fire({
           icon: 'error',
           title: 'Oops...',
           text: 'No se pueden crear eventos en el pasado!'
-        
+
         })
       }
 
